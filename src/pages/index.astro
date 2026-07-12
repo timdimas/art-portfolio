@@ -1,0 +1,123 @@
+---
+import BaseLayout from '../layouts/BaseLayout.astro';
+import Hero from '../components/Hero.astro';
+import About from '../components/About.astro';
+import Gallery from '../components/Gallery.astro';
+import Process from '../components/Process.astro';
+import Video from '../components/Video.astro';
+import Story from '../components/Story.astro';
+import Characters from '../components/Characters.astro';
+import Footer from '../components/Footer.astro';
+---
+
+<BaseLayout
+  title="Ashfall Signal | Project Portfolio"
+  description="Editorial one-page project portfolio for the Ashfall Signal illustration and animation project."
+>
+  <main>
+    <Hero />
+    <About />
+    <Gallery />
+    <Process />
+    <Video />
+    <Story />
+    <Characters />
+  </main>
+  <Footer />
+
+  <script>
+    import gsap from 'gsap';
+    import ScrollTrigger from 'gsap/ScrollTrigger';
+
+    gsap.registerPlugin(ScrollTrigger);
+
+    const reducedMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+
+    if (!reducedMotion) {
+      const revealGroups = gsap.utils.toArray<HTMLElement>('.js-reveal');
+      revealGroups.forEach((element) => {
+        gsap.fromTo(
+          element,
+          { autoAlpha: 0, y: 24 },
+          {
+            autoAlpha: 1,
+            y: 0,
+            duration: 0.75,
+            ease: 'power2.out',
+            scrollTrigger: {
+              trigger: element,
+              start: 'top 82%',
+              once: true,
+            },
+          }
+        );
+      });
+
+      gsap.fromTo(
+        '.hero-parallax',
+        { y: -10 },
+        {
+          y: 30,
+          ease: 'none',
+          scrollTrigger: {
+            trigger: '.hero-parallax',
+            scrub: true,
+            start: 'top top',
+            end: 'bottom top',
+          },
+        }
+      );
+
+      gsap.fromTo(
+        '.timeline-step',
+        { autoAlpha: 0, y: 24 },
+        {
+          autoAlpha: 1,
+          y: 0,
+          duration: 0.7,
+          ease: 'power2.out',
+          stagger: 0.12,
+          scrollTrigger: {
+            trigger: '#story',
+            start: 'top 80%',
+          },
+        }
+      );
+    } else {
+      document.querySelectorAll<HTMLElement>('.js-reveal, .timeline-step').forEach((el) => {
+        el.style.opacity = '1';
+        el.style.transform = 'none';
+      });
+    }
+
+    document.querySelectorAll('.video-play').forEach((button) => {
+      button.addEventListener('click', () => {
+        const section = button.closest('#video');
+        const video = section?.querySelector<HTMLVideoElement>('.portfolio-video');
+        if (!video) return;
+
+        if (video.paused) {
+          video.play();
+          button.classList.add('hidden');
+        } else {
+          video.pause();
+        }
+      });
+    });
+
+    document.querySelectorAll('.portfolio-video').forEach((video) => {
+      video.addEventListener('play', () => {
+        const button = video.closest('#video')?.querySelector('.video-play');
+        button?.classList.add('hidden');
+      });
+      video.addEventListener('pause', () => {
+        const button = video.closest('#video')?.querySelector('.video-play');
+        button?.classList.remove('hidden');
+      });
+      video.addEventListener('ended', () => {
+        const button = video.closest('#video')?.querySelector('.video-play');
+        button?.classList.remove('hidden');
+      });
+    });
+  </script>
+</BaseLayout>

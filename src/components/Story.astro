@@ -1,0 +1,64 @@
+---
+const beats = [
+  {
+    id: '01',
+    title: 'The City Wakes',
+    text: 'Nara arrives before sunrise and finds the first relay mark hidden in the old tram station wall.',
+    image: '/images/story-1.svg',
+  },
+  {
+    id: '02',
+    title: 'First Encounter',
+    text: 'A mechanic from the river quarter decodes the symbol system and redirects the route through flooded alleys.',
+    image: '/images/story-2.svg',
+  },
+  {
+    id: '03',
+    title: 'Midpoint Shift',
+    text: 'Weather sirens force an underground detour, turning the journey into a close-quarters lantern sequence.',
+    image: '/images/story-3.svg',
+  },
+  {
+    id: '04',
+    title: 'Final Signal',
+    text: 'At the rooftop relay, the missing transmission is restored and the city lights answer in sequence.',
+    image: '/images/story-4.svg',
+  },
+];
+---
+
+<section class="section-shell border-b border-line bg-paper" id="story">
+  <div class="container">
+    <div class="mb-12 max-w-3xl space-y-4">
+      <p class="eyebrow js-reveal">STORY STEPS</p>
+      <h2 class="display-title js-reveal text-4xl text-ink sm:text-5xl lg:text-6xl">01 TO 04 NARRATIVE ARC</h2>
+      <p class="js-reveal text-base leading-relaxed text-ink-soft md:text-lg">
+        Four beats that map the project narrative from first discovery to resolution, each paired with a supporting frame.
+      </p>
+    </div>
+
+    <div class="relative">
+      <div class="absolute left-5 top-0 h-full w-px bg-line lg:left-1/2"></div>
+
+      <div class="space-y-10 lg:space-y-16">
+        {
+          beats.map((beat, index) => (
+            <article class="timeline-step relative pl-14 lg:grid lg:grid-cols-2 lg:pl-0">
+              <div class={`lg:px-12 ${index % 2 === 0 ? 'lg:col-start-1 lg:text-right' : 'lg:col-start-2'}`}>
+                <p class="display-title outline-number text-6xl leading-none sm:text-7xl lg:text-[7.5rem]">{beat.id}</p>
+                <h3 class="display-title mt-4 text-3xl text-ink sm:text-4xl">{beat.title}</h3>
+                <p class="mt-3 text-base leading-relaxed text-ink-soft">{beat.text}</p>
+              </div>
+
+              <div class={`mt-5 lg:mt-0 lg:px-12 ${index % 2 === 0 ? 'lg:col-start-2' : 'lg:col-start-1 lg:row-start-1'}`}>
+                <img class="h-52 w-full border border-line object-cover" src={beat.image} alt={beat.title} loading="lazy" />
+              </div>
+
+              <span class="absolute left-[14px] top-1 h-3 w-3 border border-line bg-paper lg:left-1/2 lg:-translate-x-1/2"></span>
+            </article>
+          ))
+        }
+      </div>
+    </div>
+  </div>
+</section>

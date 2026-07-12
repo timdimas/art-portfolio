@@ -1,0 +1,41 @@
+---
+const groups = [
+  {
+    label: 'PROTAGONIST',
+    sheets: ['/images/character-1.svg', '/images/character-2.svg'],
+  },
+  {
+    label: 'SUPPORTING CAST',
+    sheets: ['/images/character-3.svg', '/images/character-4.svg'],
+  },
+];
+---
+
+<section class="section-shell border-b border-line bg-paper-dark" id="characters">
+  <div class="container">
+    <div class="mb-10 max-w-3xl space-y-4">
+      <p class="eyebrow js-reveal">CHARACTER DESIGNS</p>
+      <h2 class="display-title js-reveal text-4xl text-ink sm:text-5xl lg:text-6xl">TURNAROUNDS & EXPRESSIONS</h2>
+      <p class="js-reveal text-base leading-relaxed text-ink-soft md:text-lg">
+        Turnarounds and expression sheets that define shape language, costume logic, and emotional range.
+      </p>
+    </div>
+
+    <div class="space-y-10">
+      {
+        groups.map((group) => (
+          <div class="js-reveal">
+            <p class="mb-3 text-[11px] font-semibold uppercase tracking-editorial text-sage-dark">{group.label}</p>
+            <div class="grid grid-cols-1 gap-[1px] bg-line md:grid-cols-2">
+              {
+                group.sheets.map((sheet) => (
+                  <img class="h-[300px] w-full bg-paper object-cover md:h-[360px]" src={sheet} alt="Character design sheet" loading="lazy" />
+                ))
+              }
+            </div>
+          </div>
+        ))
+      }
+    </div>
+  </div>
+</section>

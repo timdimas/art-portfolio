@@ -1,0 +1,65 @@
+---
+const panels = [
+  {
+    image: '/images/about-1.svg',
+    tone: 'bg-panel-teal text-paper',
+    number: '#1',
+    label: 'CONCEPT',
+  },
+  {
+    image: '/images/about-2.svg',
+    tone: 'bg-[#6A7662] text-paper',
+    number: '#2',
+    label: 'CHARACTERS',
+  },
+  {
+    image: '/images/about-3.svg',
+    tone: 'bg-[#DCD6C8] text-ink',
+    number: '#3',
+    label: 'ENVIRONMENT',
+  },
+  {
+    image: '/images/about-4.svg',
+    tone: 'bg-[#7E8A96] text-paper',
+    number: '#4',
+    label: 'ANIMATION',
+  },
+];
+---
+
+<section class="section-shell border-b border-line bg-paper-dark" id="about">
+  <div class="container grid gap-10 lg:grid-cols-[0.36fr_0.64fr] lg:items-start">
+    <div class="space-y-6">
+      <p class="eyebrow js-reveal">PROJECT INTRO</p>
+      <h2 class="display-title js-reveal text-4xl text-ink sm:text-5xl lg:text-6xl">WORLD & PREMISE</h2>
+      <div class="js-reveal space-y-4 text-base leading-relaxed text-ink-soft md:text-lg">
+        <p>Ashfall Signal follows courier Nara as she tracks a lost transmission through districts rebuilt after the long storm season.</p>
+        <p>The visual language combines sharp silhouettes, hand-painted atmosphere, and restrained type to read like an artbook spread.</p>
+        <p>Each chapter introduces a new zone, supporting cast, and color script while keeping one continuous narrative arc.</p>
+      </div>
+    </div>
+
+    <div class="grid grid-cols-1 border border-line md:grid-cols-4 md:gap-0">
+      {
+        panels.map((panel) => (
+          <article class="group relative border-b border-line last:border-b-0 md:border-b-0 md:border-r md:last:border-r-0">
+            <div class="h-[380px] overflow-hidden md:h-[520px]">
+              <img
+                class="h-full w-full object-cover transition-transform duration-500 ease-editorial group-hover:scale-105"
+                src={panel.image}
+                alt="Project category panel artwork"
+                loading="lazy"
+              />
+            </div>
+            <div class={`border-t border-line p-4 ${panel.tone}`}>
+              <p class="display-title text-4xl leading-none text-accent-orange transition-transform duration-300 ease-editorial group-hover:translate-x-1">
+                {panel.number}
+              </p>
+              <p class="mt-2 text-[11px] font-semibold uppercase tracking-editorial">{panel.label}</p>
+            </div>
+          </article>
+        ))
+      }
+    </div>
+  </div>
+</section>

@@ -1,0 +1,73 @@
+---
+const pieces = [
+  {
+    src: '/images/gallery-1.svg',
+    title: 'Dawn Gate',
+    note: 'Key frame establishing the first district at sunrise.',
+    span: 'lg:col-span-8 lg:row-span-2',
+    height: 'h-[520px] lg:h-full',
+  },
+  {
+    src: '/images/gallery-2.svg',
+    title: 'Street Chorus',
+    note: 'Crowd scene color script with layered silhouettes.',
+    span: 'lg:col-span-4',
+    height: 'h-[250px] lg:h-[280px]',
+  },
+  {
+    src: '/images/gallery-3.svg',
+    title: 'Night Tower',
+    note: 'Vertical environment study for chapter three.',
+    span: 'lg:col-span-4',
+    height: 'h-[420px] lg:h-[560px]',
+  },
+  {
+    src: '/images/gallery-4.svg',
+    title: 'Mist Passage',
+    note: 'Cinematic tunnel composition with backlit fog.',
+    span: 'lg:col-span-4',
+    height: 'h-[250px] lg:h-[280px]',
+  },
+  {
+    src: '/images/gallery-5.svg',
+    title: 'Frame Detail',
+    note: 'Close composition focused on the lead silhouette.',
+    span: 'lg:col-span-4',
+    height: 'h-[250px] lg:h-[280px]',
+  },
+  {
+    src: '/images/gallery-6.svg',
+    title: 'Last Light',
+    note: 'Final chapter concept painting and ending beat.',
+    span: 'lg:col-span-8',
+    height: 'h-[300px] lg:h-[360px]',
+  },
+];
+---
+
+<section class="section-shell border-b border-line bg-paper" id="gallery">
+  <div class="container">
+    <div class="mb-10 max-w-3xl space-y-4">
+      <p class="eyebrow js-reveal">MAIN GALLERY</p>
+      <h2 class="display-title js-reveal text-4xl text-ink sm:text-5xl lg:text-6xl">CURATED PROJECT ARTWORK</h2>
+      <p class="js-reveal text-base leading-relaxed text-ink-soft md:text-lg">
+        A curated mix of keyframes, environment studies, and close-detail compositions from the Ashfall Signal production set.
+      </p>
+    </div>
+
+    <div class="grid grid-cols-1 gap-[1px] bg-line lg:grid-cols-12">
+      {
+        pieces.map((piece) => (
+          <figure class={`group js-reveal relative overflow-hidden bg-paper ${piece.span}`}>
+            <img class={`${piece.height} w-full object-cover`} src={piece.src} alt={piece.title} loading="lazy" />
+            <figcaption class="absolute inset-x-0 bottom-0 translate-y-4 bg-ink/90 p-4 opacity-0 transition-all duration-300 ease-editorial group-hover:translate-y-0 group-hover:opacity-100">
+              <p class="eyebrow mb-2 text-sage">ART NOTE</p>
+              <p class="font-semibold text-paper">{piece.title}</p>
+              <p class="mt-1 text-sm leading-relaxed text-paper/85">{piece.note}</p>
+            </figcaption>
+          </figure>
+        ))
+      }
+    </div>
+  </div>
+</section>
