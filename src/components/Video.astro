@@ -1,24 +1,76 @@
-<section class="section-shell border-b border-line bg-paper-dark" id="video">
+<section class="section-shell relative overflow-hidden border-t border-ash bg-coal" id="video">
+  <div class="absolute inset-x-0 top-0 h-px bg-gradient-to-r from-transparent via-bronze/40 to-transparent"></div>
+
   <div class="container">
-    <div class="mb-10 max-w-3xl space-y-4">
-      <p class="eyebrow js-reveal">ANIMATION</p>
-      <h2 class="display-title js-reveal text-4xl text-ink sm:text-5xl lg:text-6xl">SEE IT MOVE</h2>
-      <p class="js-reveal text-base leading-relaxed text-ink-soft md:text-lg">
-        Motion excerpt from the same project world, showing timing, camera movement, and painted lighting transitions.
+    <div class="mb-10 flex flex-wrap items-end justify-between gap-6">
+      <div class="max-w-xl space-y-4">
+        <p class="eyebrow js-reveal">ΒΙΝΤΕΟ / WATCH</p>
+        <h2 class="display-title js-reveal text-4xl font-light leading-tight text-bone sm:text-5xl lg:text-6xl">
+          Δες το να <span class="italic text-bronze">κινείται</span>
+        </h2>
+        <p class="js-reveal text-lg leading-relaxed text-stone">
+          Το trailer και το πλήρες φιλμ. Κάθε καρέ που είδες πιο πάνω — εδώ έχει ήχο, ρυθμό και χρόνο.
+        </p>
+      </div>
+      <p class="js-reveal font-mono text-[0.78rem] uppercase tracking-[0.22em] text-stone">
+        TRAILER + FULL FILM
       </p>
     </div>
 
-    <div class="js-reveal relative border border-line bg-paper">
-      <video class="portfolio-video aspect-video w-full object-cover" controls preload="metadata" poster="/images/video-poster.svg">
-        <source src="/videos/animation.mp4" type="video/mp4" />
-      </video>
-      <button
-        class="video-play absolute left-1/2 top-1/2 grid h-16 w-16 -translate-x-1/2 -translate-y-1/2 place-items-center rounded-full border border-paper bg-accent-orange text-paper transition-colors duration-200 hover:bg-accent-orange-light"
-        aria-label="Play video"
-        type="button"
-      >
-        <span class="ml-1 text-lg">▶</span>
-      </button>
+    <div class="grid gap-8 lg:grid-cols-2 lg:gap-px lg:border lg:border-ash lg:bg-ash">
+      <!-- Trailer -->
+      <figure class="js-reveal group relative bg-carbon">
+        <div class="relative">
+          <video
+            class="trailer-video aspect-video w-full bg-carbon object-cover"
+            controls
+            preload="metadata"
+            poster="/videos/trailer-thumbnail.jpg"
+          >
+            <source src="/videos/trailer.mp4" type="video/mp4" />
+          </video>
+          <span class="pointer-events-none absolute left-0 top-0 z-20 bg-carbon/85 px-3 py-1.5 font-mono text-[0.62rem] uppercase tracking-[0.22em] text-bronze">
+            TRAILER
+          </span>
+        </div>
+        <figcaption class="flex items-center justify-between gap-4 border-t border-ash px-5 py-4 font-mono text-[0.72rem] uppercase tracking-[0.22em] text-stone">
+          <span>ΤΟ ΔΕΟΣ ΤΗΣ ΑΝΘΡΩΠΟΤΗΤΑΣ</span>
+          <span class="text-bronze">00:24</span>
+        </figcaption>
+      </figure>
+
+      <!-- Full film — opens on YouTube in a new tab -->
+      <figure class="js-reveal group relative bg-carbon">
+        <a
+          href="https://www.youtube.com/watch?v=y1UJ3u7hKXY"
+          target="_blank"
+          rel="noreferrer"
+          class="group/link relative block aspect-video w-full overflow-hidden bg-carbon"
+        >
+          <img
+            src="/images/main-poster.webp"
+            alt="Το Δέος της Ανθρωπότητας — πλήρες φιλμ στο YouTube"
+            loading="lazy"
+            decoding="async"
+            class="absolute inset-0 h-full w-full object-cover transition-transform duration-700 ease-editorial group-hover/link:scale-[1.03]"
+          />
+          <span class="absolute left-1/2 top-1/2 grid h-16 w-16 -translate-x-1/2 -translate-y-1/2 place-items-center rounded-full border border-bone/30 bg-carbon/60 text-bone backdrop-blur-sm transition-colors duration-200 group-hover/link:border-bronze group-hover/link:text-bronze">
+            <svg class="ml-1 h-6 w-6" viewBox="0 0 24 24" fill="none" aria-hidden="true">
+              <path d="M8 5v14l11-7z" fill="currentColor" />
+            </svg>
+          </span>
+          <span class="pointer-events-none absolute left-0 top-0 z-20 bg-carbon/85 px-3 py-1.5 font-mono text-[0.62rem] uppercase tracking-[0.22em] text-bronze">
+            FULL FILM
+          </span>
+          <span class="absolute inset-x-0 bottom-0 bg-gradient-to-t from-carbon/80 to-transparent px-4 pb-3 pt-8 font-mono text-[0.68rem] uppercase tracking-[0.22em] text-bone/80 opacity-0 transition-opacity duration-300 group-hover/link:opacity-100">
+            ΑΝΟΙΓΕΙ ΣΤΟ YOUTUBE →
+          </span>
+        </a>
+        <figcaption class="flex items-center justify-between gap-4 border-t border-ash px-5 py-4 font-mono text-[0.72rem] uppercase tracking-[0.22em] text-stone">
+          <span>ΠΛΗΡΕΣ ΦΙΛΜ</span>
+          <span class="text-bronze">YOUTUBE ↗</span>
+        </figcaption>
+      </figure>
     </div>
   </div>
 </section>

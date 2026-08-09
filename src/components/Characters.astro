@@ -1,41 +1,114 @@
 ---
-const groups = [
+const duel = [
   {
-    label: 'PROTAGONIST',
-    sheets: ['/images/character-1.svg', '/images/character-2.svg'],
+    name: 'UTIO',
+    role: 'Ο ΕΠΑΝΑΣΤΑΤΗΣ',
+    text: 'Επιζών μιας αιματηρής εξέγερσης. Τραυματισμένος, φέρνει την τελευταία ελπίδα του λαού — και το βάρος μιας παλιάς φιλίας.',
+    img: '/pipeline/Utio.jpg',
+    side: 'LEFT',
   },
   {
-    label: 'SUPPORTING CAST',
-    sheets: ['/images/character-3.svg', '/images/character-4.svg'],
+    name: 'KEMBRAK',
+    role: 'Ο ΤΥΡΑΝΝΟΣ',
+    text: 'Ο ηγεμόνας του Berneburg που κυβερνά μέσω του φόβου. Ο άλλοτε παιδικός φίλος του Utio — το τέρας που έγινε από άνθρωπο.',
+    img: '/pipeline/Kembrak.jpg',
+    side: 'RIGHT',
   },
+];
+
+const fight = [
+  { src: '/gifs/gif.11.mp4', label: 'SEQ 01 / Η ΑΡΧΗ' },
+  { src: '/gifs/gif.12.mp4', label: 'SEQ 02 / Η ΕΠΙΘΕΣΗ' },
+  { src: '/gifs/gif.37.mp4', label: 'SEQ 03 / Η ΑΝΤΑΛΛΑΓΗ' },
+  { src: '/gifs/gif.21.mp4', label: 'SEQ 04 / ΤΟ ΤΕΛΟΣ' },
 ];
 ---
 
-<section class="section-shell border-b border-line bg-paper-dark" id="characters">
-  <div class="container">
-    <div class="mb-10 max-w-3xl space-y-4">
-      <p class="eyebrow js-reveal">CHARACTER DESIGNS</p>
-      <h2 class="display-title js-reveal text-4xl text-ink sm:text-5xl lg:text-6xl">TURNAROUNDS & EXPRESSIONS</h2>
-      <p class="js-reveal text-base leading-relaxed text-ink-soft md:text-lg">
-        Turnarounds and expression sheets that define shape language, costume logic, and emotional range.
+<section class="section-shell relative overflow-hidden border-t border-ash bg-carbon" id="characters">
+  <div class="absolute inset-0 bg-[radial-gradient(ellipse_at_50%_10%,#1E1A17_0%,#12100E_65%)]"></div>
+
+  <div class="container relative">
+    <div class="mb-12 flex flex-wrap items-end justify-between gap-6">
+      <div class="max-w-xl space-y-4">
+        <p class="eyebrow js-reveal">ΣΧΕΔΙΑΣΜΟΣ ΧΑΡΑΚΤΗΡΩΝ / CHARACTER DESIGN</p>
+        <h2 class="display-title js-reveal text-4xl font-light leading-tight text-bone sm:text-5xl lg:text-6xl">
+          Δύο φίλοι, <span class="italic text-bronze">δύο κόσμοι</span>
+        </h2>
+        <p class="js-reveal text-lg leading-relaxed text-stone">
+          Ο επαναστάτης και ο τύραννος — σχεδιασμένοι ο ένας για τον άλλον. Τα φύλλα
+          χαρακτήρων πάνω στο light table, και η μάχη τους σε κίνηση.
+        </p>
+      </div>
+      <p class="js-reveal font-mono text-[0.78rem] uppercase tracking-[0.22em] text-stone">
+        UTIO VS KEMBRAK
       </p>
     </div>
 
-    <div class="space-y-10">
+    <!-- Showdown -->
+    <div class="grid gap-px border border-ash bg-ash md:grid-cols-2">
       {
-        groups.map((group) => (
-          <div class="js-reveal">
-            <p class="mb-3 text-[11px] font-semibold uppercase tracking-editorial text-sage-dark">{group.label}</p>
-            <div class="grid grid-cols-1 gap-[1px] bg-line md:grid-cols-2">
-              {
-                group.sheets.map((sheet) => (
-                  <img class="h-[300px] w-full bg-paper object-cover md:h-[360px]" src={sheet} alt="Character design sheet" loading="lazy" />
-                ))
-              }
+        duel.map((c, i) => (
+          <article class="js-reveal group relative bg-coal">
+            <div class="relative overflow-hidden bg-bone/95">
+              <img
+                src={c.img}
+                alt={`${c.name} — ${c.role}`}
+                loading="lazy"
+                decoding="async"
+                class="aspect-[4/3] w-full object-cover transition-transform duration-700 ease-editorial group-hover:scale-[1.03]"
+              />
+              <span
+                class="pointer-events-none absolute top-0 z-10 bg-carbon/85 px-3 py-1.5 font-mono text-[0.62rem] uppercase tracking-[0.22em] text-bronze"
+              >
+                ΦΥΛΛΟ ΧΑΡΑΚΤΗΡΑ
+              </span>
             </div>
-          </div>
+            <div class="p-8 md:p-10">
+              <div class="flex items-baseline justify-between gap-4">
+                <h3 class="display-title text-4xl font-light text-bone">{c.name}</h3>
+                <span class="font-mono text-[0.72rem] uppercase tracking-[0.22em] text-bronze">{c.role}</span>
+              </div>
+              <p class="mt-4 text-lg leading-relaxed text-stone">{c.text}</p>
+            </div>
+          </article>
         ))
       }
+    </div>
+
+    <!-- The fight in motion -->
+    <div class="mt-px border border-ash bg-carbon">
+      <div class="flex items-center justify-between gap-4 border-b border-ash px-5 py-4">
+        <p class="eyebrow">Η ΜΑΧΗ / THE FIGHT</p>
+        <p class="font-mono text-[0.72rem] uppercase tracking-[0.22em] text-stone">
+          4 ΚΑΡΕ ΣΕ ΚΙΝΗΣΗ
+        </p>
+      </div>
+      <div class="grid gap-px bg-ash sm:grid-cols-2 lg:grid-cols-4">
+        {
+          fight.map((f) => (
+            <figure class="group js-reveal relative bg-coal">
+              <div class="relative bg-bone/95">
+                <video
+                  src={f.src}
+                  autoplay
+                  muted
+                  loop
+                  playsinline
+                  preload="metadata"
+                  aria-label={f.label}
+                  class="aspect-video w-full object-cover"
+                ></video>
+                <span class="pointer-events-none absolute left-0 top-0 bg-carbon/80 px-2.5 py-1 font-mono text-[0.62rem] uppercase tracking-[0.22em] text-bronze">
+                  LOOP
+                </span>
+              </div>
+              <figcaption class="border-t border-ash px-4 py-3 font-mono text-[0.68rem] uppercase tracking-[0.18em] text-stone">
+                {f.label}
+              </figcaption>
+            </figure>
+          ))
+        }
+      </div>
     </div>
   </div>
 </section>

@@ -1,35 +1,47 @@
-<section class="section-shell border-b border-line bg-paper" id="top">
-  <div class="container grid items-center gap-10 lg:grid-cols-[0.4fr_0.6fr]">
-    <div class="space-y-8">
-      <!-- <p class="eyebrow js-reveal">ILLUSTRATION PROJECT</p> -->
+---
+const identity = 'ΟΝΟΜΑ ΕΠΩΝΥΜΟ';
+const role = '2D/3D ANIMATOR · CONCEPT ARTIST · SOUND DESIGNER';
+---
 
-      <div class="space-y-2 js-reveal">
-        <h1 class="display-title text-5xl text-ink sm:text-6xl lg:text-8xl">PORTFOLIO</h1>
-        <p class="display-title text-5xl text-accent-orange sm:text-6xl lg:text-8xl">NARRATIVE 2026</p>
-        <p class="display-title outline-number text-4xl sm:text-5xl lg:text-7xl">NARRATIVE 2026</p>
-      </div>
+<section class="relative flex min-h-screen items-end overflow-hidden bg-carbon" id="top">
+  <!-- Poster — full-bleed cover -->
+  <div class="absolute inset-0">
+    <img
+      src="/images/main-poster.webp"
+      alt="Κεντρική αφίσα — Το Δέος της Ανθρωπότητας"
+      class="hero-parallax h-full w-full scale-110 object-cover object-center"
+      loading="eager"
+    />
+    <div class="absolute inset-0 bg-gradient-to-t from-carbon via-carbon/35 to-carbon/10"></div>
+    <div class="absolute inset-0 bg-carbon/10"></div>
+  </div>
 
-      <p class="js-reveal max-w-xl text-base leading-relaxed text-ink-soft md:text-lg">
-        Ashfall Signal is a worldbuilding project about weather-driven architecture, memory maps, and a courier crossing a city at dawn.
-      </p>
+  <!-- Film strips framing the edges -->
+  <div class="sprocket absolute inset-y-0 left-0 z-20"></div>
+  <div class="sprocket absolute inset-y-0 right-0 z-20"></div>
 
-      <div class="js-reveal border-t border-line pt-5 text-xs uppercase tracking-editorial text-ink-soft">
-        <p class="mb-3 font-semibold text-ink">MINA KADE / ASHFALL SIGNAL</p>
-        <div class="flex flex-wrap gap-x-6 gap-y-3">
-          <a class="underline decoration-line underline-offset-4 transition-colors duration-200 hover:text-accent-orange" href="mailto:artist@email.com">EMAIL</a>
-          <a class="underline decoration-line underline-offset-4 transition-colors duration-200 hover:text-accent-orange" href="https://instagram.com" target="_blank" rel="noreferrer">INSTAGRAM</a>
-          <a class="underline decoration-line underline-offset-4 transition-colors duration-200 hover:text-accent-orange" href="https://behance.net" target="_blank" rel="noreferrer">BEHANCE</a>
-        </div>
-      </div>
+  <!-- Cover metadata, top edge -->
+  <div class="absolute inset-x-0 top-0 z-20 pt-20 md:pt-24">
+    <div class="container flex items-center justify-between font-mono text-[0.72rem] uppercase tracking-[0.22em] text-bone/80">
+      <span>PORTFOLIO / 2026</span>
+      <span class="text-bronze">ΣΕΛ. 01</span>
     </div>
+  </div>
 
-    <figure class="js-reveal lg:min-h-[82vh]">
-      <img
-        class="hero-parallax h-[52vh] w-full object-cover md:h-[65vh] lg:h-full"
-        src="/images/hero.svg"
-        alt="Ashfall Signal hero key illustration"
-        loading="eager"
-      />
-    </figure>
+  <!-- Identity over the poster -->
+  <div class="container relative z-20 pb-16 pt-40 md:pb-20">
+    <p class="js-reveal mb-5 font-mono text-[0.75rem] uppercase tracking-[0.22em] text-bone/80">
+      {role}
+    </p>
+
+    <h1 class="display-title js-reveal max-w-4xl text-[clamp(2.6rem,7vw,5.5rem)] font-light leading-[0.95] text-bone drop-shadow-[0_2px_24px_rgba(0,0,0,0.6)]">
+      {identity}
+    </h1>
+
+    <div class="js-reveal mt-10 flex flex-wrap items-center gap-x-8 gap-y-3 border-t border-bone/15 pt-6 font-mono text-[0.75rem] uppercase tracking-[0.18em] text-bone/70">
+      <span>2D · 3D · ANIMATION · CONCEPT · SOUND</span>
+      <span class="text-bronze">ΤΟ ΔΕΟΣ ΤΗΣ ΑΝΘΡΩΠΟΤΗΤΑΣ</span>
+      <span class="hidden sm:inline">ΕΠΙΛΕΓΜΕΝΟ ΕΡΓΟ</span>
+    </div>
   </div>
 </section>

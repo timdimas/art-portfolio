@@ -1,0 +1,86 @@
+---
+const featured = {
+  title: 'Το Δέος της Ανθρωπότητας',
+  en: 'THE AWE OF HUMANITY',
+  year: '2026',
+  tags: '2D/3D HYBRID · ANIMATED SHORT · CONCEPT · SOUND',
+  blurb: 'Σε ένα μεσαιωνικό βασίλειο κάτω από τη σκιά της σκοτεινής μαγείας, ένας επαναστάτης αντιμετωπίζει τον τύραννο — τον άλλοτε παιδικό του φίλο.',
+  href: '#featured',
+  poster: '/images/main-poster.webp',
+};
+
+const others = [
+  { title: 'Project 02', year: '20XX', note: 'Πρόσθεσε το επόμενο έργο σου — εικόνα, τίτλο και μία γραμμή.' },
+  { title: 'Project 03', year: '20XX', note: 'Πρόσθεσε το επόμενο έργο σου — εικόνα, τίτλο και μία γραμμή.' },
+  { title: 'Project 04', year: '20XX', note: 'Πρόσθεσε το επόμενο έργο σου — εικόνα, τίτλο και μία γραμμή.' },
+];
+---
+
+<section class="section-shell border-t border-ash bg-carbon" id="work">
+  <div class="container">
+    <div class="mb-10 flex flex-wrap items-end justify-between gap-6">
+      <div class="max-w-xl space-y-4">
+        <p class="eyebrow js-reveal">ΣΕΛ. 03 / ΕΠΙΛΕΓΜΕΝΑ ΕΡΓΑ</p>
+        <h2 class="display-title js-reveal text-4xl font-light leading-tight text-bone sm:text-5xl lg:text-6xl">
+          Η δουλειά <span class="italic text-bronze">που με εκπροσωπεί</span>
+        </h2>
+      </div>
+      <p class="js-reveal max-w-xs text-lg leading-relaxed text-stone">
+        Το κύριο έργο μου προβάλλεται πρώτο. Τα υπόλοιπα projects προστίθενται καθώς ολοκληρώνονται.
+      </p>
+    </div>
+
+    <!-- Featured -->
+    <a
+      href={featured.href}
+      class="js-reveal group relative block overflow-hidden border border-ash bg-coal"
+    >
+      <div class="relative aspect-[16/9] overflow-hidden md:aspect-[21/9]">
+        <img
+          src={featured.poster}
+          alt={featured.title}
+          loading="lazy"
+          decoding="async"
+          class="h-full w-full object-cover opacity-70 transition-all duration-700 ease-editorial group-hover:scale-[1.02] group-hover:opacity-90"
+        />
+        <div class="absolute inset-0 bg-gradient-to-r from-carbon via-carbon/40 to-transparent"></div>
+        <div class="absolute inset-0 flex flex-col justify-end p-8 md:p-12">
+          <p class="font-mono text-[0.72rem] uppercase tracking-[0.22em] text-bronze">{featured.tags}</p>
+          <h3 class="display-title mt-3 text-3xl font-light text-bone sm:text-4xl md:text-5xl">
+            {featured.title}
+          </h3>
+          <p class="mt-1 font-mono text-[0.75rem] uppercase tracking-[0.22em] text-stone">{featured.en} / {featured.year}</p>
+          <p class="mt-4 max-w-lg text-lg leading-relaxed text-bone/80">{featured.blurb}</p>
+          <p class="mt-6 inline-flex items-center gap-2 font-mono text-[0.75rem] uppercase tracking-[0.22em] text-bronze">
+            ΔΕΣ ΤΟ ΕΡΓΟ
+            <span class="transition-transform duration-300 group-hover:translate-x-1">→</span>
+          </p>
+        </div>
+      </div>
+      <span class="pointer-events-none absolute left-0 top-0 z-10 px-3 py-2 font-mono text-[0.75rem] uppercase tracking-[0.22em] text-stone">
+        FEATURED
+      </span>
+    </a>
+
+    <!-- Other projects -->
+    <div class="mt-px grid gap-px border border-ash bg-ash sm:grid-cols-3">
+      {
+        others.map((p, i) => (
+          <article class="js-reveal group relative flex min-h-[260px] flex-col justify-between overflow-hidden border border-ash bg-carbon p-8">
+            <div class="flex items-center justify-between">
+              <span class="display-title text-3xl font-light italic text-bronze/60">
+                {String(i + 2).padStart(2, '0')}
+              </span>
+              <span class="font-mono text-[0.72rem] uppercase tracking-[0.22em] text-stone">{p.year}</span>
+            </div>
+            <div>
+              <h3 class="font-mono text-xs uppercase tracking-[0.22em] text-bone">{p.title}</h3>
+              <p class="mt-2 text-lg leading-relaxed text-stone">{p.note}</p>
+            </div>
+            <span class="absolute inset-0 border border-bronze/0 transition-colors duration-300 group-hover:border-bronze/40"></span>
+          </article>
+        ))
+      }
+    </div>
+  </div>
+</section>

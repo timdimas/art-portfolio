@@ -1,65 +1,105 @@
 ---
-const panels = [
-  {
-    image: '/images/about-1.svg',
-    tone: 'bg-panel-teal text-paper',
-    number: '#1',
-    label: 'CONCEPT',
-  },
-  {
-    image: '/images/about-2.svg',
-    tone: 'bg-[#6A7662] text-paper',
-    number: '#2',
-    label: 'CHARACTERS',
-  },
-  {
-    image: '/images/about-3.svg',
-    tone: 'bg-[#DCD6C8] text-ink',
-    number: '#3',
-    label: 'ENVIRONMENT',
-  },
-  {
-    image: '/images/about-4.svg',
-    tone: 'bg-[#7E8A96] text-paper',
-    number: '#4',
-    label: 'ANIMATION',
-  },
+const identity = 'ΟΝΟΜΑ ΕΠΩΝΥΜΟ';
+
+const education = [
+  { year: '20XX', title: 'Σχολή / Τμήμα', org: 'Πανεπιστήμιο ή σχολή', note: 'Τίτλος σπουδών — πρόσθεσε τα πραγματικά στοιχεία.' },
+  { year: '20XX', title: 'Σεμινάριο / Εργαστήριο', org: 'Φορέας', note: 'Εξειδίκευση σε animation ή concept art.' },
+];
+
+const experience = [
+  { year: '20XX—', title: 'Freelance 2D/3D Artist', org: 'Ανεξάρτητη εργασία', note: 'Animation, concept art, sound design.' },
+  { year: '20XX', title: 'Role / Project', org: 'Ομάδα ή πελάτης', note: 'Περιγραφή ρόλου και ευθυνών.' },
+  { year: '20XX', title: 'Το Δέος της Ανθρωπότητας', org: 'Προσωπικό έργο', note: 'Concept, animation, σκηνοθεσία, sound design — ταινία μικρού μήκους 2D/3D.' },
+];
+
+const tools = [
+  'Clip Studio Paint',
+  'DaVinci Resolve',
+  'After Effects',
+  'Blender',
+  'Krita',
+  'TVPaint',
+  'Procreate',
 ];
 ---
 
-<section class="section-shell border-b border-line bg-paper-dark" id="about">
-  <div class="container grid gap-10 lg:grid-cols-[0.36fr_0.64fr] lg:items-start">
-    <div class="space-y-6">
-      <p class="eyebrow js-reveal">PROJECT INTRO</p>
-      <h2 class="display-title js-reveal text-4xl text-ink sm:text-5xl lg:text-6xl">WORLD & PREMISE</h2>
-      <div class="js-reveal space-y-4 text-base leading-relaxed text-ink-soft md:text-lg">
-        <p>Ashfall Signal follows courier Nara as she tracks a lost transmission through districts rebuilt after the long storm season.</p>
-        <p>The visual language combines sharp silhouettes, hand-painted atmosphere, and restrained type to read like an artbook spread.</p>
-        <p>Each chapter introduces a new zone, supporting cast, and color script while keeping one continuous narrative arc.</p>
+<section class="section-shell relative overflow-hidden border-t border-ash bg-coal" id="about">
+  <div class="absolute inset-x-0 top-0 h-px bg-gradient-to-r from-transparent via-bronze/40 to-transparent"></div>
+
+  <div class="container">
+    <div class="mb-10 flex flex-wrap items-end justify-between gap-6">
+      <div class="max-w-xl space-y-4">
+        <p class="eyebrow js-reveal">ΣΕΛ. 02 / ΓΙΑ ΜΕΝΑ</p>
+        <h2 class="display-title js-reveal text-4xl font-light leading-tight text-bone sm:text-5xl lg:text-6xl">
+          Ο δημιουργός <span class="italic text-bronze">πίσω από</span> τα καρέ
+        </h2>
       </div>
     </div>
 
-    <div class="grid grid-cols-1 border border-line md:grid-cols-4 md:gap-0">
-      {
-        panels.map((panel) => (
-          <article class="group relative border-b border-line last:border-b-0 md:border-b-0 md:border-r md:last:border-r-0">
-            <div class="h-[380px] overflow-hidden md:h-[520px]">
-              <img
-                class="h-full w-full object-cover transition-transform duration-500 ease-editorial group-hover:scale-105"
-                src={panel.image}
-                alt="Project category panel artwork"
-                loading="lazy"
-              />
-            </div>
-            <div class={`border-t border-line p-4 ${panel.tone}`}>
-              <p class="display-title text-4xl leading-none text-accent-orange transition-transform duration-300 ease-editorial group-hover:translate-x-1">
-                {panel.number}
-              </p>
-              <p class="mt-2 text-[11px] font-semibold uppercase tracking-editorial">{panel.label}</p>
-            </div>
-          </article>
-        ))
-      }
+    <div class="grid gap-10 lg:grid-cols-2 lg:gap-20">
+      <!-- Bio -->
+      <div class="space-y-6">
+        <p class="js-reveal text-lg leading-relaxed text-stone md:text-lg">
+          Είμαι ο {identity} — καλλιτέχνης που εργάζεται στη διασταύρωση 2D και 3D
+          animation, concept art και sound design. Δουλεύω κυρίως πάνω σε προσωπικά
+          projects με κινηματογραφικό χαρακτήρα, όπως η ταινία μικρού μήκους
+          «Το Δέος της Ανθρωπότητας».
+        </p>
+        <p class="js-reveal text-lg leading-relaxed text-stone">
+          Αυτό το portfolio συγκεντρώνει επιλεγμένη δουλειά — το κύριο έργο μου και
+          μικρότερα projects. Πρόσθεσε εδώ μια πραγματική βιογραφία και τι σε ενδιαφέρει.
+        </p>
+
+        <div class="js-reveal border border-ash bg-carbon p-6">
+          <p class="eyebrow mb-4">ΕΡΓΑΛΕΙΑ / TOOLS</p>
+          <ul class="flex flex-wrap gap-2">
+            {tools.map((t) => (
+              <li class="border border-smoke px-3 py-1.5 font-mono text-[0.72rem] uppercase tracking-[0.18em] text-bone transition-colors duration-200 hover:border-bronze hover:text-bronze">
+                {t}
+              </li>
+            ))}
+          </ul>
+        </div>
+
+        <p class="js-reveal font-mono text-[0.72rem] uppercase tracking-[0.22em] text-stone/70">
+          AVAILABILITY — ΔΙΑΘΕΣΙΜΟΤΗΤΑ: ΕΤΟΙΜΟΣ/Η ΓΙΑ ΣΥΝΕΡΓΑΣΙΕΣ
+        </p>
+      </div>
+
+      <!-- Education & Experience -->
+      <div class="space-y-10">
+        <div class="js-reveal">
+          <p class="eyebrow mb-6">ΕΚΠΑΙΔΕΥΣΗ / EDUCATION</p>
+          <div class="border-t border-ash">
+            {education.map((e) => (
+              <div class="grid grid-cols-[auto_1fr] gap-6 border-b border-ash py-5">
+                <span class="font-mono text-xs text-bronze">{e.year}</span>
+                <div>
+                  <h3 class="font-mono text-xs uppercase tracking-[0.22em] text-bone">{e.title}</h3>
+                  <p class="mt-1 font-mono text-[0.72rem] uppercase tracking-[0.18em] text-stone">{e.org}</p>
+                  <p class="mt-2 text-lg leading-relaxed text-stone">{e.note}</p>
+                </div>
+              </div>
+            ))}
+          </div>
+        </div>
+
+        <div class="js-reveal">
+          <p class="eyebrow mb-6">ΕΜΠΕΙΡΙΑ / EXPERIENCE</p>
+          <div class="border-t border-ash">
+            {experience.map((e) => (
+              <div class="grid grid-cols-[auto_1fr] gap-6 border-b border-ash py-5">
+                <span class="font-mono text-xs text-bronze">{e.year}</span>
+                <div>
+                  <h3 class="font-mono text-xs uppercase tracking-[0.22em] text-bone">{e.title}</h3>
+                  <p class="mt-1 font-mono text-[0.72rem] uppercase tracking-[0.18em] text-stone">{e.org}</p>
+                  <p class="mt-2 text-lg leading-relaxed text-stone">{e.note}</p>
+                </div>
+              </div>
+            ))}
+          </div>
+        </div>
+      </div>
     </div>
   </div>
 </section>

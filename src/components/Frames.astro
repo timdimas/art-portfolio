@@ -1,0 +1,177 @@
+---
+import { getFrames } from '../lib/frames';
+
+const frames = getFrames();
+---
+
+<section class="section-shell relative overflow-hidden border-t border-ash bg-coal" id="frames">
+  <div class="absolute inset-x-0 top-0 h-px bg-gradient-to-r from-transparent via-bronze/40 to-transparent"></div>
+
+  <div class="container">
+    <div class="mb-10 flex flex-wrap items-end justify-between gap-6">
+      <div class="max-w-xl space-y-4">
+        <p class="eyebrow js-reveal">ΤΟ ΡΙΛ / ΚΑΡΕ ΚΑΡΕ</p>
+        <h2 class="display-title js-reveal text-4xl font-light leading-tight text-bone sm:text-5xl lg:text-6xl">
+          Δες το να κινείται, <span class="italic text-bronze">καρέ καρέ</span>
+        </h2>
+        <p class="js-reveal text-lg leading-relaxed text-stone">
+          Πραγματικά καρέ από το τελικό cut. Προχώρα με τα βέλη ή το πληκτρολόγιο —
+          κάθε καρέ κουβαλά τον χρόνο του μέσα από το ίδιο το φιλμ.
+        </p>
+      </div>
+
+      <p class="js-reveal font-mono text-[0.78rem] uppercase tracking-[0.22em] text-stone">
+        {frames.length} ΚΑΡΕ / ΒΕΛΗ ← → Ή ΚΛΙΚ
+      </p>
+    </div>
+
+    <!-- Viewer -->
+    <div class="js-reveal relative border border-ash bg-carbon" data-frame-viewer data-count={frames.length}>
+      <div class="absolute left-0 top-0 z-20 flex items-center gap-2 px-4 py-3 font-mono text-[0.72rem] uppercase tracking-[0.22em] text-stone">
+        <span class="inline-block h-2 w-2 rounded-full bg-bronze"></span>
+        <span>VIEWER</span>
+        <span class="hidden text-bronze sm:inline">/ REEL 01</span>
+      </div>
+
+      <div class="relative mx-auto aspect-[4/2] w-full overflow-hidden">
+        {
+          frames.map((frame) => (
+            <img
+              data-frame
+              data-tc={frame.timecode}
+              src={frame.src}
+              alt={`Καρέ ${frame.index} στο ${frame.timecode}`}
+              loading="lazy"
+              decoding="async"
+              class="absolute inset-0 h-full w-full object-contain opacity-0 transition-opacity duration-500 ease-editorial"
+            />
+          ))
+        }
+
+        <!-- Overlay arrows -->
+        <div class="pointer-events-none absolute inset-0 z-20 flex items-center justify-between px-2 sm:px-4">
+          <button
+            data-prev
+            class="pointer-events-auto grid h-12 w-12 place-items-center border border-bone/25 bg-carbon/55 text-bone backdrop-blur-sm transition-all duration-200 hover:border-bronze hover:text-bronze sm:h-14 sm:w-14"
+            aria-label="Προηγούμενο καρέ"
+            type="button"
+          >
+            <svg class="h-5 w-5" viewBox="0 0 16 16" fill="none" aria-hidden="true">
+              <path d="M10.5 2 5 8l5.5 6" stroke="currentColor" stroke-width="1.5" />
+            </svg>
+          </button>
+
+          <button
+            data-next
+            class="pointer-events-auto grid h-12 w-12 place-items-center border border-bone/25 bg-carbon/55 text-bone backdrop-blur-sm transition-all duration-200 hover:border-bronze hover:text-bronze sm:h-14 sm:w-14"
+            aria-label="Επόμενο καρέ"
+            type="button"
+          >
+            <svg class="h-5 w-5" viewBox="0 0 16 16" fill="none" aria-hidden="true">
+              <path d="M5.5 2 11 8l-5.5 6" stroke="currentColor" stroke-width="1.5" />
+            </svg>
+          </button>
+        </div>
+
+        <!-- Counter / timecode, bottom overlay -->
+        <div class="absolute inset-x-0 bottom-0 z-20 flex items-center justify-between bg-gradient-to-t from-carbon/80 to-transparent px-4 pb-3 pt-10 font-mono text-[0.72rem] uppercase tracking-[0.22em] text-bone/90">
+          <span>
+            <span class="text-bronze" data-frame-index>01</span>
+            <span class="text-bone/50"> / {frames.length}</span>
+          </span>
+          <span data-timecode>TC 00:00:00</span>
+        </div>
+      </div>
+    </div>
+
+    <!-- Film strip / thumbnails -->
+    <div class="js-reveal mt-3 flex gap-2 overflow-x-auto border border-ash bg-carbon p-2 scrollbar-none" data-strip>
+      {
+        frames.map((frame) => (
+          <button
+            data-thumb
+            data-index={frame.index}
+            aria-label={`Πήγαινε στο καρέ ${frame.index} στο ${frame.timecode}`}
+            class="group relative shrink-0 border transition-colors duration-200"
+            type="button"
+          >
+            <img
+              src={frame.src}
+              alt=""
+              loading="lazy"
+              decoding="async"
+              class="h-14 w-24 object-cover opacity-60 transition-opacity duration-200 group-hover:opacity-100"
+            />
+            <span
+              class="pointer-events-none absolute inset-x-0 bottom-0 bg-carbon/80 px-1 py-0.5 text-center font-mono text-[0.62rem] uppercase tracking-widest text-bone"
+            >{frame.index}</span>
+          </button>
+        ))
+      }
+    </div>
+
+    <p class="mt-4 font-mono text-[0.72rem] uppercase tracking-[0.22em] text-stone/70">
+      Καρέ από το τελικό cut. GIF και βίντεο μπορούν να προστεθούν εδώ αργότερα.
+    </p>
+  </div>
+</section>
+
+<script>
+  const viewer = document.querySelector<HTMLElement>('[data-frame-viewer]');
+  const strip = document.querySelector<HTMLElement>('[data-strip]');
+  if (!viewer) throw new Error('no viewer');
+
+  const imgs = Array.from(viewer.querySelectorAll<HTMLImageElement>('[data-frame]'));
+  const thumbs = Array.from(strip?.querySelectorAll<HTMLElement>('[data-thumb]') ?? []);
+  const timeEl = viewer.querySelector<HTMLElement>('[data-timecode]');
+  const indexEl = viewer.querySelector<HTMLElement>('[data-frame-index]');
+  const prevBtn = viewer.querySelector<HTMLElement>('[data-prev]');
+  const nextBtn = viewer.querySelector<HTMLElement>('[data-next]');
+  const total = Number(viewer.dataset.count);
+
+  let current = 0;
+  imgs[0]?.classList.add('opacity-100');
+
+  function setFrame(i: number) {
+    current = ((i % total) + total) % total;
+    imgs.forEach((img, idx) => img.classList.toggle('opacity-100', idx === current));
+    thumbs.forEach((th) => {
+      const active = th.dataset.index === String(current + 1).padStart(2, '0');
+      th.classList.toggle('border-bronze', active);
+      th.classList.toggle('border-smoke', !active);
+      if (active) th.scrollIntoView({ block: 'nearest', inline: 'nearest', behavior: 'smooth' });
+    });
+    const activeImg = imgs[current];
+    if (activeImg?.dataset.tc) {
+      timeEl && (timeEl.textContent = `TC ${activeImg.dataset.tc}`);
+    }
+    indexEl!.textContent = String(current + 1).padStart(2, '0');
+  }
+
+  nextBtn?.addEventListener('click', () => setFrame(current + 1));
+  prevBtn?.addEventListener('click', () => setFrame(current - 1));
+  thumbs.forEach((th) =>
+    th.addEventListener('click', () => setFrame(Number(th.dataset.index) - 1))
+  );
+
+  window.addEventListener('keydown', (e) => {
+    if (e.key !== 'ArrowRight' && e.key !== 'ArrowLeft') return;
+    const rect = viewer.getBoundingClientRect();
+    const inView = rect.top < window.innerHeight && rect.bottom > 0;
+    if (!inView) return;
+    e.preventDefault();
+    setFrame(current + (e.key === 'ArrowRight' ? 1 : -1));
+  });
+
+  setFrame(0);
+</script>
+
+<style>
+  .scrollbar-none {
+    scrollbar-width: none;
+    -ms-overflow-style: none;
+  }
+  .scrollbar-none::-webkit-scrollbar {
+    display: none;
+  }
+</style>

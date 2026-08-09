@@ -1,73 +1,68 @@
 ---
-const pieces = [
-  {
-    src: '/images/gallery-1.svg',
-    title: 'Dawn Gate',
-    note: 'Key frame establishing the first district at sunrise.',
-    span: 'lg:col-span-8 lg:row-span-2',
-    height: 'h-[520px] lg:h-full',
-  },
-  {
-    src: '/images/gallery-2.svg',
-    title: 'Street Chorus',
-    note: 'Crowd scene color script with layered silhouettes.',
-    span: 'lg:col-span-4',
-    height: 'h-[250px] lg:h-[280px]',
-  },
-  {
-    src: '/images/gallery-3.svg',
-    title: 'Night Tower',
-    note: 'Vertical environment study for chapter three.',
-    span: 'lg:col-span-4',
-    height: 'h-[420px] lg:h-[560px]',
-  },
-  {
-    src: '/images/gallery-4.svg',
-    title: 'Mist Passage',
-    note: 'Cinematic tunnel composition with backlit fog.',
-    span: 'lg:col-span-4',
-    height: 'h-[250px] lg:h-[280px]',
-  },
-  {
-    src: '/images/gallery-5.svg',
-    title: 'Frame Detail',
-    note: 'Close composition focused on the lead silhouette.',
-    span: 'lg:col-span-4',
-    height: 'h-[250px] lg:h-[280px]',
-  },
-  {
-    src: '/images/gallery-6.svg',
-    title: 'Last Light',
-    note: 'Final chapter concept painting and ending beat.',
-    span: 'lg:col-span-8',
-    height: 'h-[300px] lg:h-[360px]',
-  },
+import { getGallery } from '../lib/frames';
+
+const frames = getGallery();
+
+const rotations = [
+  '-rotate-[1.6deg]', 'rotate-[2.2deg]', '-rotate-[0.8deg]', 'rotate-[1.2deg]',
+  '-rotate-[2.4deg]', 'rotate-[0.6deg]', '-rotate-[1.1deg]', 'rotate-[2deg]',
 ];
+const tapeEvery = [0, 3, 6];
+
+const picks = frames.map((frame, i) => ({
+  frame,
+  rot: rotations[i % rotations.length],
+  tape: tapeEvery.includes(i),
+}));
 ---
 
-<section class="section-shell border-b border-line bg-paper" id="gallery">
-  <div class="container">
-    <div class="mb-10 max-w-3xl space-y-4">
-      <p class="eyebrow js-reveal">MAIN GALLERY</p>
-      <h2 class="display-title js-reveal text-4xl text-ink sm:text-5xl lg:text-6xl">CURATED PROJECT ARTWORK</h2>
-      <p class="js-reveal text-base leading-relaxed text-ink-soft md:text-lg">
-        A curated mix of keyframes, environment studies, and close-detail compositions from the Ashfall Signal production set.
-      </p>
+<section class="section-shell relative overflow-hidden border-t border-ash bg-carbon" id="stills">
+  <!-- light-table glow -->
+  <div class="absolute inset-0 bg-[radial-gradient(ellipse_at_50%_0%,#1E1A17_0%,#12100E_65%)]"></div>
+
+  <div class="container relative">
+    <div class="mb-12 flex flex-wrap items-end justify-between gap-6">
+      <div class="max-w-xl space-y-4">
+        <p class="eyebrow js-reveal">ΣΤΙΓΜΙΟΤΥΠΑ / ΕΠΙΛΕΓΜΕΝΑ ΚΑΡΕ</p>
+        <h2 class="display-title js-reveal text-4xl font-light leading-tight text-bone sm:text-5xl lg:text-6xl">
+          Η δουλειά, <span class="italic text-bronze">σκορπισμένη</span> στο τραπέζι
+        </h2>
+        <p class="js-reveal text-lg leading-relaxed text-stone">
+          Καρέ από το τελικό cut, τοποθετημένα σαν εκτυπώσεις πάνω στο light table —
+          με τον χρόνο τους γραμμένο στο περιθώριο.
+        </p>
+      </div>
     </div>
 
-    <div class="grid grid-cols-1 gap-[1px] bg-line lg:grid-cols-12">
+    <div class="columns-2 gap-6 md:columns-3 lg:columns-4 lg:gap-8">
       {
-        pieces.map((piece) => (
-          <figure class={`group js-reveal relative overflow-hidden bg-paper ${piece.span}`}>
-            <img class={`${piece.height} w-full object-cover`} src={piece.src} alt={piece.title} loading="lazy" />
-            <figcaption class="absolute inset-x-0 bottom-0 translate-y-4 bg-ink/90 p-4 opacity-0 transition-all duration-300 ease-editorial group-hover:translate-y-0 group-hover:opacity-100">
-              <p class="eyebrow mb-2 text-sage">ART NOTE</p>
-              <p class="font-semibold text-paper">{piece.title}</p>
-              <p class="mt-1 text-sm leading-relaxed text-paper/85">{piece.note}</p>
-            </figcaption>
+        picks.map(({ frame, rot, tape }) => (
+          <figure
+            class={`js-reveal mb-6 break-inside-avoid transition-transform duration-500 ease-editorial hover:!rotate-0 hover:-translate-y-2 ${rot}`}
+          >
+            <div class="relative bg-bone p-3 pb-0 shadow-[0_12px_36px_rgba(0,0,0,0.55)] transition-shadow duration-500 ease-editorial hover:shadow-[0_22px_60px_rgba(0,0,0,0.65)]">
+              {tape && (
+                <span
+                  class="pointer-events-none absolute -top-2.5 left-1/2 z-10 h-5 w-16 -translate-x-1/2 rotate-[-2deg] bg-[#C9A87C]/80 backdrop-blur-[1px]"
+                  aria-hidden="true"
+                ></span>
+              )}
+              <img
+                src={frame.src}
+                alt={`Στιγμιότυπο στο ${frame.timecode}`}
+                loading="lazy"
+                decoding="async"
+                class="aspect-video w-full object-cover"
+              />
+              <figcaption class="flex items-baseline justify-between gap-3 py-2.5 font-mono text-[0.68rem] uppercase tracking-[0.14em] text-carbon">
+                {/* <span>ΚΑΡΕ {frame.index}</span>
+                <span class="text-bronze-dark">TC {frame.timecode}</span> */}
+              </figcaption>
+            </div>
           </figure>
         ))
       }
     </div>
+
   </div>
 </section>

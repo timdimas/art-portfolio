@@ -1,0 +1,43 @@
+---
+const stats = [
+  { value: '4.000+', label: 'Χειροποίητα καρέ & στρώματα χρώματος' },
+  { value: '25', label: '3D περιβάλλοντα' },
+  { value: '70', label: '2D φόντα' },
+  { value: '30', label: 'Υβριδικά (2D/3D) φόντα' },
+  { value: '70+', label: 'Custom 2D & 3D props' },
+];
+---
+
+<section class="section-shell border-t border-ash bg-carbon" id="metrics">
+  <div class="container">
+    <div class="mb-10 flex flex-wrap items-end justify-between gap-6">
+      <div class="max-w-xl space-y-4">
+        <p class="eyebrow js-reveal">STATS / PROJECT BREAKDOWN</p>
+        <h2 class="display-title js-reveal text-4xl font-light leading-tight text-bone sm:text-5xl lg:text-6xl">
+          Το έργο <span class="italic text-bronze">σε αριθμούς</span>
+        </h2>
+      </div>
+      <p class="js-reveal max-w-xs text-lg leading-relaxed text-stone">
+        Τα πραγματικά μεγέθη της παραγωγής — τι χρειάστηκε για να ζωντανέψει ο κόσμος του Berneburg.
+      </p>
+    </div>
+
+    <dl class="js-reveal grid grid-cols-2 gap-px border border-ash bg-ash md:grid-cols-3 lg:grid-cols-5">
+      {
+        stats.map((s) => (
+          <div class="flex flex-col justify-between gap-8 bg-coal p-6 sm:p-8">
+            <dd class="display-title text-5xl font-light text-bone sm:text-6xl">
+              {s.value}
+            </dd>
+            <div>
+              <span class="mb-4 block h-px w-8 bg-bronze/60"></span>
+              <dt class="font-mono text-[0.72rem] uppercase tracking-[0.22em] leading-relaxed text-stone">
+                {s.label}
+              </dt>
+            </div>
+          </div>
+        ))
+      }
+    </dl>
+  </div>
+</section>
