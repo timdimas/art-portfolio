@@ -1,4 +1,5 @@
 ---
+const base = import.meta.env.BASE_URL + '/';
 const influences = [
   {
     id: '01',
@@ -21,9 +22,9 @@ const influences = [
 ];
 
 const studies = [
-  { src: '/gifs/gif.26.mp4', label: 'MOTION STUDY 01', note: 'Κίνηση & χρόνος' },
-  { src: '/gifs/gif.27.mp4', label: 'MOTION STUDY 02', note: 'Φως & σιλουέτα' },
-  { src: '/gifs/gif.32.mp4', label: 'MOTION STUDY 03', note: 'Καρέ και ρυθμός' },
+  { src: `${base}gifs/gif.26.mp4`, label: 'MOTION STUDY 01', note: 'Κίνηση & χρόνος' },
+  { src: `${base}gifs/gif.27.mp4`, label: 'MOTION STUDY 02', note: 'Φως & σιλουέτα' },
+  { src: `${base}gifs/gif.32.mp4`, label: 'MOTION STUDY 03', note: 'Καρέ και ρυθμός' },
 ];
 ---
 

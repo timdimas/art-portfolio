@@ -1,26 +1,27 @@
 ---
+const base = import.meta.env.BASE_URL + '/';
 const duel = [
   {
     name: 'UTIO',
     role: 'Ο ΕΠΑΝΑΣΤΑΤΗΣ',
     text: 'Επιζών μιας αιματηρής εξέγερσης. Τραυματισμένος, φέρνει την τελευταία ελπίδα του λαού — και το βάρος μιας παλιάς φιλίας.',
-    img: '/pipeline/Utio.jpg',
+    img: `${base}pipeline/Utio.jpg`,
     side: 'LEFT',
   },
   {
     name: 'KEMBRAK',
     role: 'Ο ΤΥΡΑΝΝΟΣ',
     text: 'Ο ηγεμόνας του Berneburg που κυβερνά μέσω του φόβου. Ο άλλοτε παιδικός φίλος του Utio — το τέρας που έγινε από άνθρωπο.',
-    img: '/pipeline/Kembrak.jpg',
+    img: `${base}pipeline/Kembrak.jpg`,
     side: 'RIGHT',
   },
 ];
 
 const fight = [
-  { src: '/gifs/gif.11.mp4', label: 'SEQ 01 / Η ΑΡΧΗ' },
-  { src: '/gifs/gif.12.mp4', label: 'SEQ 02 / Η ΕΠΙΘΕΣΗ' },
-  { src: '/gifs/gif.37.mp4', label: 'SEQ 03 / Η ΑΝΤΑΛΛΑΓΗ' },
-  { src: '/gifs/gif.21.mp4', label: 'SEQ 04 / ΤΟ ΤΕΛΟΣ' },
+  { src: `${base}gifs/gif.11.mp4`, label: 'SEQ 01 / Η ΑΡΧΗ' },
+  { src: `${base}gifs/gif.12.mp4`, label: 'SEQ 02 / Η ΕΠΙΘΕΣΗ' },
+  { src: `${base}gifs/gif.37.mp4`, label: 'SEQ 03 / Η ΑΝΤΑΛΛΑΓΗ' },
+  { src: `${base}gifs/gif.21.mp4`, label: 'SEQ 04 / ΤΟ ΤΕΛΟΣ' },
 ];
 ---
 

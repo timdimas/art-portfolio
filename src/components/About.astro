@@ -1,140 +1,187 @@
 ---
-const identity = 'ΟΝΟΜΑ ΕΠΩΝΥΜΟ';
+const base = import.meta.env.BASE_URL + "/";
+const identity = "ΟΝΟΜΑ ΕΠΩΝΥΜΟ";
 
 const education = [
-  { year: '20XX', title: 'Σχολή / Τμήμα', org: 'Πανεπιστήμιο ή σχολή', note: 'Τίτλος σπουδών — πρόσθεσε τα πραγματικά στοιχεία.' },
-  { year: '20XX', title: 'Σεμινάριο / Εργαστήριο', org: 'Φορέας', note: 'Εξειδίκευση σε animation ή concept art.' },
+	{
+		year: "20XX",
+		title: "Σχολή / Τμήμα",
+		org: "Πανεπιστήμιο ή σχολή",
+		note: "Τίτλος σπουδών — πρόσθεσε τα πραγματικά στοιχεία.",
+	},
+	{
+		year: "20XX",
+		title: "Σεμινάριο / Εργαστήριο",
+		org: "Φορέας",
+		note: "Εξειδίκευση σε animation ή concept art.",
+	},
 ];
 
 const experience = [
-  { year: '20XX—', title: 'Freelance 2D/3D Artist', org: 'Ανεξάρτητη εργασία', note: 'Animation, concept art, sound design.' },
-  { year: '20XX', title: 'Role / Project', org: 'Ομάδα ή πελάτης', note: 'Περιγραφή ρόλου και ευθυνών.' },
-  { year: '20XX', title: 'Το Δέος της Ανθρωπότητας', org: 'Προσωπικό έργο', note: 'Concept, animation, σκηνοθεσία, sound design — ταινία μικρού μήκους 2D/3D.' },
+	{
+		year: "20XX—",
+		title: "Freelance 2D/3D Artist",
+		org: "Ανεξάρτητη εργασία",
+		note: "Animation, concept art, sound design.",
+	},
+	{
+		year: "20XX",
+		title: "Role / Project",
+		org: "Ομάδα ή πελάτης",
+		note: "Περιγραφή ρόλου και ευθυνών.",
+	},
+	{
+		year: "20XX",
+		title: "Το Δέος της Ανθρωπότητας",
+		org: "Προσωπικό έργο",
+		note: "Concept, animation, σκηνοθεσία, sound design — ταινία μικρού μήκους 2D/3D.",
+	},
 ];
 
 const tools = [
-  { name: 'Clip Studio Paint', logo: '/tools/clip-studio.png' },
-  { name: 'DaVinci Resolve', logo: '/tools/davinci-resolve.webp' },
-  { name: 'Blender', logo: '/tools/blender.svg' },
-  { name: 'Photoshop', logo: '/tools/photoshop.svg' },
+	{ name: "Clip Studio Paint", logo: `${base}tools/clip-studio.png` },
+	{ name: "DaVinci Resolve", logo: `${base}tools/davinci-resolve.webp` },
+	{ name: "Blender", logo: `${base}tools/blender.svg` },
+	{ name: "Photoshop", logo: `${base}tools/photoshop.svg` },
 ];
 ---
 
 <section class="section-shell relative overflow-hidden border-t border-ash bg-coal" id="about">
-  <div class="absolute inset-x-0 top-0 h-px bg-gradient-to-r from-transparent via-bronze/40 to-transparent"></div>
+	<div
+		class="absolute inset-x-0 top-0 h-px bg-gradient-to-r from-transparent via-bronze/40 to-transparent"
+	>
+	</div>
 
-  <div class="container">
-    <div class="mb-10 flex flex-wrap items-end justify-between gap-6">
-      <div class="max-w-xl space-y-4">
-        <p class="eyebrow js-reveal">ΣΕΛ. 02 / ΓΙΑ ΜΕΝΑ</p>
-        <h2 class="display-title js-reveal text-4xl font-light leading-tight text-bone sm:text-5xl lg:text-6xl">
-          Ο δημιουργός <span class="italic text-bronze">πίσω από</span> τα καρέ
-        </h2>
-      </div>
-    </div>
+	<div class="container">
+		<div class="mb-10 flex flex-wrap items-end justify-between gap-6">
+			<div class="max-w-xl space-y-4">
+				<p class="eyebrow js-reveal">ΣΕΛ. 02 / ΓΙΑ ΜΕΝΑ</p>
+				<h2
+					class="display-title js-reveal text-4xl font-light leading-tight text-bone sm:text-5xl lg:text-6xl"
+				>
+					Ο δημιουργός <span class="italic text-bronze">πίσω από</span> τα καρέ
+				</h2>
+			</div>
+		</div>
 
-    <div class="grid gap-10 lg:grid-cols-[0.7fr_1.3fr] lg:gap-20">
-      <!-- Portrait + Bio -->
-      <div class="space-y-6">
-        <!-- Artist print -->
-        <figure class="js-reveal group relative mx-auto w-full max-w-xs">
-          <div class="relative bg-bone p-3 pb-0 shadow-[0_14px_40px_rgba(0,0,0,0.55)] transition-shadow duration-500 ease-editorial group-hover:shadow-[0_24px_64px_rgba(0,0,0,0.65)]">
-            <span
-              class="pointer-events-none absolute -top-2.5 left-1/2 z-10 h-5 w-16 -translate-x-1/2 rotate-[-2deg] bg-[#C9A87C]/80 backdrop-blur-[1px]"
-              aria-hidden="true"
-            ></span>
-            <img
-              src="/images/Poster.webp"
-              alt="Αφίσα — Το Δέος της Ανθρωπότητας"
-              loading="lazy"
-              decoding="async"
-              class="aspect-[3/4] w-full object-cover"
-            />
-            <figcaption class="py-2.5 text-center font-mono text-[0.68rem] uppercase tracking-[0.14em] text-carbon">
-              ΑΦΙΣΑ / <span class="text-bronze-dark">ΑΝΘΡΩΠΟΤΗΤΑΣ</span>
-            </figcaption>
-          </div>
-        </figure>
+		<div class="grid gap-10 lg:grid-cols-[0.7fr_1.3fr] lg:gap-20">
+			<!-- Portrait + Bio -->
+			<div class="space-y-6">
+				<!-- Artist print -->
+				<figure class="js-reveal group relative mx-auto w-full max-w-xs">
+					<div
+						class="relative bg-bone p-3 pb-0 shadow-[0_14px_40px_rgba(0,0,0,0.55)] transition-shadow duration-500 ease-editorial group-hover:shadow-[0_24px_64px_rgba(0,0,0,0.65)]"
+					>
+						<span
+							class="pointer-events-none absolute -top-2.5 left-1/2 z-10 h-5 w-16 -translate-x-1/2 rotate-[-2deg] bg-[#C9A87C]/80 backdrop-blur-[1px]"
+							aria-hidden="true"></span>
+						<img
+							src={`${base}images/Poster.webp`}
+							alt="Αφίσα — Το Δέος της Ανθρωπότητας"
+							loading="lazy"
+							decoding="async"
+							class="aspect-[3/4] w-full object-cover"
+						/>
+						<figcaption
+							class="py-2.5 text-center font-mono text-[0.68rem] uppercase tracking-[0.14em] text-carbon"
+						>
+							ΑΦΙΣΑ / <span class="text-bronze-dark">ΑΝΘΡΩΠΟΤΗΤΑΣ</span>
+						</figcaption>
+					</div>
+				</figure>
+			</div>
 
-        
-      </div>
+			<!-- Tools + Availability -->
+			<div class="space-y-6">
+				<p
+					class="js-reveal font-mono text-[0.72rem] uppercase tracking-[0.22em] text-stone/70"
+				>
+					ΔΙΑΘΕΣΙΜΟΤΗΤΑ: ΕΤΟΙΜΟΣ ΓΙΑ ΣΥΝΕΡΓΑΣΙΕΣ
+				</p>
+				<p class="js-reveal text-lg leading-relaxed text-stone md:text-lg">
+					Είμαι ο {identity} — καλλιτέχνης που εργάζεται στη διασταύρωση 2D και 3D animation,
+					concept art και sound design. Δουλεύω κυρίως πάνω σε προσωπικά projects με κινηματογραφικό
+					χαρακτήρα, όπως η ταινία μικρού μήκους «Το Δέος της Ανθρωπότητας».
+				</p>
+				<p class="js-reveal text-lg leading-relaxed text-stone">
+					Αυτό το portfolio συγκεντρώνει επιλεγμένη δουλειά — το κύριο έργο μου και
+					μικρότερα projects. Πρόσθεσε εδώ μια πραγματική βιογραφία και τι σε ενδιαφέρει.
+				</p>
+				<div class="js-reveal border border-ash bg-carbon p-6">
+					<p class="eyebrow mb-5">ΕΡΓΑΛΕΙΑ / TOOLS</p>
+					<ul class="grid grid-cols-2 gap-2 sm:grid-cols-2">
+						{
+							tools.map((t) => (
+								<li class="group flex items-center gap-3 border border-smoke bg-coal px-4 py-3 transition-colors duration-200 hover:border-bronze">
+									<img
+										src={t.logo}
+										alt={`${t.name} logo`}
+										loading="lazy"
+										decoding="async"
+										class="h-5 w-5 shrink-0 opacity-80 transition-opacity duration-200 group-hover:opacity-100"
+									/>
+									<span class="font-mono text-[0.72rem] uppercase tracking-[0.16em] text-bone">
+										{t.name}
+									</span>
+								</li>
+							))
+						}
+					</ul>
+				</div>
+			</div>
 
-      <!-- Tools + Availability -->
-      <div class="space-y-6">
-        
+			<!-- Education & Experience -->
+			<div class="space-y-10 lg:col-span-2">
+				<div class="grid gap-10 md:grid-cols-2 lg:gap-20">
+					<div class="js-reveal">
+						<p class="eyebrow mb-6">ΕΚΠΑΙΔΕΥΣΗ / EDUCATION</p>
+						<div class="border-t border-ash">
+							{
+								education.map((e) => (
+									<div class="grid grid-cols-[auto_1fr] gap-6 border-b border-ash py-5">
+										<span class="font-mono text-xs text-bronze">{e.year}</span>
+										<div>
+											<h3 class="font-mono text-xs uppercase tracking-[0.22em] text-bone">
+												{e.title}
+											</h3>
+											<p class="mt-1 font-mono text-[0.72rem] uppercase tracking-[0.18em] text-stone">
+												{e.org}
+											</p>
+											<p class="mt-2 text-lg leading-relaxed text-stone">
+												{e.note}
+											</p>
+										</div>
+									</div>
+								))
+							}
+						</div>
+					</div>
 
-        <p class="js-reveal font-mono text-[0.72rem] uppercase tracking-[0.22em] text-stone/70">
-          ΔΙΑΘΕΣΙΜΟΤΗΤΑ: ΕΤΟΙΜΟΣ ΓΙΑ ΣΥΝΕΡΓΑΣΙΕΣ
-        </p>
-        <p class="js-reveal text-lg leading-relaxed text-stone md:text-lg">
-          Είμαι ο {identity} — καλλιτέχνης που εργάζεται στη διασταύρωση 2D και 3D
-          animation, concept art και sound design. Δουλεύω κυρίως πάνω σε προσωπικά
-          projects με κινηματογραφικό χαρακτήρα, όπως η ταινία μικρού μήκους
-          «Το Δέος της Ανθρωπότητας».
-        </p>
-        <p class="js-reveal text-lg leading-relaxed text-stone">
-          Αυτό το portfolio συγκεντρώνει επιλεγμένη δουλειά — το κύριο έργο μου και
-          μικρότερα projects. Πρόσθεσε εδώ μια πραγματική βιογραφία και τι σε ενδιαφέρει.
-        </p>
-        <div class="js-reveal border border-ash bg-carbon p-6">
-          <p class="eyebrow mb-5">ΕΡΓΑΛΕΙΑ / TOOLS</p>
-          <ul class="grid grid-cols-2 gap-2 sm:grid-cols-2">
-            {tools.map((t) => (
-              <li
-                class="group flex items-center gap-3 border border-smoke bg-coal px-4 py-3 transition-colors duration-200 hover:border-bronze"
-              >
-                <img
-                  src={t.logo}
-                  alt={`${t.name} logo`}
-                  loading="lazy"
-                  decoding="async"
-                  class="h-5 w-5 shrink-0 opacity-80 transition-opacity duration-200 group-hover:opacity-100"
-                />
-                <span class="font-mono text-[0.72rem] uppercase tracking-[0.16em] text-bone">
-                  {t.name}
-                </span>
-              </li>
-            ))}
-          </ul>
-        </div>
-      </div>
-
-      <!-- Education & Experience -->
-      <div class="space-y-10 lg:col-span-2">
-        <div class="grid gap-10 md:grid-cols-2 lg:gap-20">
-          <div class="js-reveal">
-            <p class="eyebrow mb-6">ΕΚΠΑΙΔΕΥΣΗ / EDUCATION</p>
-            <div class="border-t border-ash">
-              {education.map((e) => (
-                <div class="grid grid-cols-[auto_1fr] gap-6 border-b border-ash py-5">
-                  <span class="font-mono text-xs text-bronze">{e.year}</span>
-                  <div>
-                    <h3 class="font-mono text-xs uppercase tracking-[0.22em] text-bone">{e.title}</h3>
-                    <p class="mt-1 font-mono text-[0.72rem] uppercase tracking-[0.18em] text-stone">{e.org}</p>
-                    <p class="mt-2 text-lg leading-relaxed text-stone">{e.note}</p>
-                  </div>
-                </div>
-              ))}
-            </div>
-          </div>
-
-          <div class="js-reveal">
-            <p class="eyebrow mb-6">ΕΜΠΕΙΡΙΑ / EXPERIENCE</p>
-            <div class="border-t border-ash">
-              {experience.map((e) => (
-                <div class="grid grid-cols-[auto_1fr] gap-6 border-b border-ash py-5">
-                  <span class="font-mono text-xs text-bronze">{e.year}</span>
-                  <div>
-                    <h3 class="font-mono text-xs uppercase tracking-[0.22em] text-bone">{e.title}</h3>
-                    <p class="mt-1 font-mono text-[0.72rem] uppercase tracking-[0.18em] text-stone">{e.org}</p>
-                    <p class="mt-2 text-lg leading-relaxed text-stone">{e.note}</p>
-                  </div>
-                </div>
-              ))}
-            </div>
-          </div>
-        </div>
-      </div>
-    </div>
-  </div>
+					<div class="js-reveal">
+						<p class="eyebrow mb-6">ΕΜΠΕΙΡΙΑ / EXPERIENCE</p>
+						<div class="border-t border-ash">
+							{
+								experience.map((e) => (
+									<div class="grid grid-cols-[auto_1fr] gap-6 border-b border-ash py-5">
+										<span class="font-mono text-xs text-bronze">{e.year}</span>
+										<div>
+											<h3 class="font-mono text-xs uppercase tracking-[0.22em] text-bone">
+												{e.title}
+											</h3>
+											<p class="mt-1 font-mono text-[0.72rem] uppercase tracking-[0.18em] text-stone">
+												{e.org}
+											</p>
+											<p class="mt-2 text-lg leading-relaxed text-stone">
+												{e.note}
+											</p>
+										</div>
+									</div>
+								))
+							}
+						</div>
+					</div>
+				</div>
+			</div>
+		</div>
+	</div>
 </section>

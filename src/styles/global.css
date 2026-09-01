@@ -1,6 +1,26 @@
-@tailwind base;
-@tailwind components;
-@tailwind utilities;
+@import "tailwindcss";
+
+@theme {
+	--color-carbon: #12100e;
+	--color-coal: #1b1815;
+	--color-ash: #262220;
+	--color-smoke: #332d29;
+	--color-bronze: #b7925d;
+	--color-bronze-dark: #8a6b43;
+	--color-ember: #cfa56a;
+	--color-bone: #e9e1d7;
+	--color-stone: #a79b8c;
+	--color-slate: #5c7177;
+
+	--font-display: "Fraunces", Georgia, serif;
+	--font-body: "Karla", "Helvetica Neue", sans-serif;
+	--font-mono: "Space Mono", "Courier New", monospace;
+
+	--letter-spacing-editorial: 0.18em;
+	--ease-editorial: cubic-bezier(0.22, 0.8, 0.3, 1);
+
+	--breakpoint-2xl: 1360px;
+}
 
 html {
 	scroll-behavior: smooth;
@@ -16,11 +36,13 @@ body {
 	box-sizing: border-box;
 }
 
-img,
-video {
-	display: block;
-	width: 100%;
-	height: auto;
+@layer base {
+	img,
+	video {
+		display: block;
+		width: 100%;
+		height: auto;
+	}
 }
 
 a {

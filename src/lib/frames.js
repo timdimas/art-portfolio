@@ -11,6 +11,8 @@ function parse(file) {
 	return { date: match?.[1], raw, timecode, ext: match?.[3] };
 }
 
+const BASE = (import.meta.env.BASE_URL ?? "") + "/";
+
 export function getFrames() {
 	const files = fs
 		.readdirSync(IMG_DIR)
@@ -20,7 +22,7 @@ export function getFrames() {
 	return files.map((file, index) => {
 		const { timecode } = parse(file);
 		return {
-			src: `/frames/${file}`,
+			src: `${BASE}frames/${file}`,
 			index: String(index + 1).padStart(2, "0"),
 			timecode,
 			file,
@@ -37,7 +39,7 @@ export function getGallery() {
 	return files.map((file, index) => {
 		const { timecode } = parse(file);
 		return {
-			src: `/gallery/${file}`,
+			src: `${BASE}gallery/${file}`,
 			index: String(index + 1).padStart(2, "0"),
 			timecode,
 			file,
