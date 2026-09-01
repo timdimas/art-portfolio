@@ -3,112 +3,142 @@
 @tailwind utilities;
 
 html {
-  scroll-behavior: smooth;
-  font-size: 17px;
+	scroll-behavior: smooth;
+	font-size: 17px;
 }
 
 body {
-  margin: 0;
-  background-color: #12100e;
+	margin: 0;
+	background-color: #12100e;
 }
 
 * {
-  box-sizing: border-box;
+	box-sizing: border-box;
 }
 
 img,
 video {
-  display: block;
-  width: 100%;
-  height: auto;
+	display: block;
+	width: 100%;
+	height: auto;
 }
 
 a {
-  color: inherit;
+	color: inherit;
 }
 
 ::selection {
-  color: #12100e;
-  background: #cfa56a;
+	color: #12100e;
+	background: #cfa56a;
 }
 
 :focus-visible {
-  outline: 2px solid #cfa56a;
-  outline-offset: 3px;
+	outline: 2px solid #cfa56a;
+	outline-offset: 3px;
 }
 
-.eyebrow {
-  font-family: 'Space Mono', 'Courier New', monospace;
-  font-size: 0.78rem;
-  line-height: 1.3;
-  letter-spacing: 0.2em;
-  text-transform: uppercase;
-  color: #a79b8c;
-  font-weight: 400;
-}
-
-.display-title {
-  font-family: 'Fraunces', Georgia, serif;
-  font-variation-settings: 'opsz' 144, 'SOFT' 50, 'WONK' 1;
-  letter-spacing: -0.015em;
-}
-
-.section-shell {
-  padding-top: 5rem;
-  padding-bottom: 5rem;
+/* Container override for centered/padded layout */
+.container {
+	width: 100%;
+	margin-right: auto;
+	margin-left: auto;
+	padding-right: 1.25rem;
+	padding-left: 1.25rem;
 }
 
 @media (min-width: 768px) {
-  .section-shell {
-    padding-top: 7rem;
-    padding-bottom: 7rem;
-  }
+	.container {
+		padding-right: 2.5rem;
+		padding-left: 2.5rem;
+	}
+}
+
+@media (min-width: 1536px) {
+	.container {
+		max-width: 1360px;
+	}
+}
+
+/* Custom Components & Utilities */
+.eyebrow {
+	font-family: var(--font-mono);
+	font-size: 0.78rem;
+	line-height: 1.3;
+	letter-spacing: 0.2em;
+	text-transform: uppercase;
+	color: var(--color-stone);
+	font-weight: 400;
+}
+
+.display-title {
+	font-family: var(--font-display);
+	font-variation-settings:
+		"opsz" 144,
+		"SOFT" 50,
+		"WONK" 1;
+	letter-spacing: -0.015em;
+}
+
+.section-shell {
+	padding-top: 5rem;
+	padding-bottom: 5rem;
+}
+
+@media (min-width: 768px) {
+	.section-shell {
+		padding-top: 7rem;
+		padding-bottom: 7rem;
+	}
 }
 
 /* Film grain overlay */
 .grain::after {
-  content: '';
-  position: fixed;
-  inset: 0;
-  z-index: 60;
-  pointer-events: none;
-  opacity: 0.3;
-  mix-blend-mode: overlay;
-  background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='160' height='160'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='2' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E");
-  animation: grain 0.5s steps(2) infinite;
+	content: "";
+	position: fixed;
+	inset: 0;
+	z-index: 60;
+	pointer-events: none;
+	opacity: 0.3;
+	mix-blend-mode: overlay;
+	background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='160' height='160'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='2' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E");
+	animation: grain 0.5s steps(2) infinite;
 }
 
 @keyframes grain {
-  0%,
-  100% {
-    transform: translate(0, 0);
-  }
-  25% {
-    transform: translate(-2%, 1%);
-  }
-  50% {
-    transform: translate(1%, -2%);
-  }
-  75% {
-    transform: translate(-1%, 2%);
-  }
+	0%,
+	100% {
+		transform: translate(0, 0);
+	}
+	25% {
+		transform: translate(-2%, 1%);
+	}
+	50% {
+		transform: translate(1%, -2%);
+	}
+	75% {
+		transform: translate(-1%, 2%);
+	}
 }
 
 /* Film sprocket strips */
 .sprocket {
-  background-color: #262220;
-  background-image: radial-gradient(circle at 50% 50%, #12100e 0 3.2px, transparent 3.6px);
-  background-size: 100% 24px;
-  background-repeat: repeat-y;
-  background-position: center;
-  width: 0.9rem;
+	background-color: var(--color-ash);
+	background-image: radial-gradient(
+		circle at 50% 50%,
+		var(--color-carbon) 0 3.2px,
+		transparent 3.6px
+	);
+	background-size: 100% 24px;
+	background-repeat: repeat-y;
+	background-position: center;
+	width: 0.9rem;
 }
 
 @media (prefers-reduced-motion: reduce) {
-  html {
-    scroll-behavior: auto;
-  }
-  .grain::after {
-    animation: none;
-  }
+	html {
+		scroll-behavior: auto;
+	}
+	.grain::after {
+		animation: none;
+	}
 }
