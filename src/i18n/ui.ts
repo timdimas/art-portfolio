@@ -11,7 +11,6 @@ const el = {
 			"Πορτφόλιο 2D/3D καλλιτέχνη. Επιλεγμένα έργα, εκπαίδευση, εμπειρία και το κύριο project «Το Δέος της Ανθρωπότητας».",
 	},
 	toggle: {
-		label: "EN",
 		aria: "Αλλαγή γλώσσας σε English",
 	},
 	header: {
@@ -39,9 +38,6 @@ const el = {
 		titleAfter: "τα καρέ",
 		identity: "Παναγιώτης Βασδάρης",
 		role: "Artist / Animator",
-		posterAlt: "Αφίσα — Το Δέος της Ανθρωπότητας",
-		posterCaption: "ΑΦΙΣΑ /",
-		posterCaptionEm: "ΑΝΘΡΩΠΟΤΗΤΑΣ",
 		availability: "ΔΙΑΘΕΣΙΜΟΤΗΤΑ: ΕΤΟΙΜΟΣ ΓΙΑ ΣΥΝΕΡΓΑΣΙΕΣ",
 		bio1: "Είμαι καλλιτέχνης με υπόβαθρο στη ζωγραφική και στις ψηφιακές τέχνες, με εστίαση στο 2D & 3D animation, concept art και sound design. Η δουλειά μου επικεντρώνεται στη δημιουργία κινηματογραφικών σκηνών, character moments και προσωπικών projects, ενώ παράλληλα εξερευνώ το comic/manga ως μέσο οπτικής αφήγησης. Με ενδιαφέρει ιδιαίτερα η δημιουργία ατμόσφαιρας, κόσμων και ιστοριών μέσα από τον συνδυασμό εικόνας, κίνησης και ήχου. Στόχος μου είναι να εξελιχθώ ως δημιουργός και να συνεργαστώ με artists και animation studios σε projects που δίνουν χώρο στη δημιουργικότητα, την αφήγηση και τον πειραματισμό.",
 		bio2: "Αναζητώ ευκαιρίες συνεργασίας με στούντιο animation και δημιουργικές ομάδες.",
@@ -105,7 +101,7 @@ const el = {
 	},
 	featured: {
 		eyebrow: "CASE STUDY",
-		title: "Το Δέος",
+		title: "Το Δέος ",
 		titleEm: "της Ανθρωπότητας",
 		titleAfter: "",
 		subtitle: "THE AWE OF HUMANITY — 2026 — 2D/3D HYBRID ANIMATED SHORT",
@@ -117,7 +113,7 @@ const el = {
 	},
 	frames: {
 		eyebrow: "ΤΟ ΡΙΛ / ΚΑΡΕ ΚΑΡΕ",
-		title: "Δες το να κινείται,",
+		title: "Δες το να κινείται, ",
 		titleEm: "καρέ καρέ",
 		titleAfter: "",
 		intro: "Πραγματικά καρέ από το τελικό cut. Προχώρα με τα βέλη ή το πληκτρολόγιο — κάθε καρέ κουβαλά τον χρόνο του μέσα από το ίδιο το φιλμ.",
@@ -287,6 +283,16 @@ const el = {
 		opensOn: "ΑΝΟΙΓΕΙ ΣΤΟ YOUTUBE →",
 		posterAlt: "Το Δέος της Ανθρωπότητας — πλήρες φιλμ στο YouTube",
 	},
+	archive: {
+		eyebrow: "ΕΡΓΑ",
+		title: "Η",
+		titleEm: " αφίσα",
+		titleAfter: "",
+		intro: "Η αφίσα του «Το Δέος της Ανθρωπότητας»",
+		posterAlt: "Αφίσα — Το Δέος της Ανθρωπότητας",
+		posterCaption: "ΑΦΙΣΑ /",
+		posterCaptionEm: "ΑΝΘΡΩΠΟΤΗΤΑΣ",
+	},
 	footer: {
 		endLabel: "ΤΕΛΟΣ ΤΟΥ ΡΙΛ",
 		creatorHeading: "Ο ΔΗΜΙΟΥΡΓΟΣ",
@@ -308,7 +314,6 @@ const en: UI = {
 			"Portfolio of a 2D/3D artist. Selected works, education, experience and the main project “The Awe of Humanity”.",
 	},
 	toggle: {
-		label: "ΕΛ",
 		aria: "Switch language to Greek",
 	},
 	header: {
@@ -336,9 +341,6 @@ const en: UI = {
 		titleAfter: "the frames",
 		identity: "Panayotis Vasdaris",
 		role: "Artist / Animator",
-		posterAlt: "Poster — The Awe of Humanity",
-		posterCaption: "POSTER /",
-		posterCaptionEm: "OF HUMANITY",
 		availability: "AVAILABILITY: OPEN FOR COLLABORATIONS",
 		bio1: "I am an artist with a background in painting and digital arts, with a focus on 2D & 3D animation, concept art, and sound design. My work focuses on creating cinematic scenes, character moments, and personal projects, while also exploring comic/manga as a form of visual storytelling. I am particularly interested in creating atmosphere, worlds, and stories through the combination of image, motion, and sound. My goal is to continue developing as a creative artist and collaborate with artists and animation studios on projects that embrace creativity, storytelling, and experimentation.",
 		bio2: "I am currently seeking opportunities to collaborate with animation studios and creative teams.",
@@ -401,9 +403,9 @@ const en: UI = {
 		cta: "VIEW THE WORK",
 	},
 	featured: {
-		eyebrow: "CASE STUDY / PAGE 04",
+		eyebrow: "CASE STUDY",
 		title: "The Awe",
-		titleEm: "of Humanity",
+		titleEm: " of Humanity",
 		titleAfter: "",
 		subtitle: "THE AWE OF HUMANITY — 2026 — 2D/3D HYBRID ANIMATED SHORT",
 		aside: [
@@ -583,6 +585,16 @@ const en: UI = {
 		fullFilmCaption: "FULL FILM",
 		opensOn: "OPENS ON YOUTUBE →",
 		posterAlt: "The Awe of Humanity — full film on YouTube",
+	},
+	archive: {
+		eyebrow: "WORK",
+		title: "The",
+		titleEm: " poster",
+		titleAfter: "",
+		intro: "The poster of “The Awe of Humanity”",
+		posterAlt: "Poster — The Awe of Humanity",
+		posterCaption: "POSTER",
+		posterCaptionEm: "OF HUMANITY",
 	},
 	footer: {
 		endLabel: "END OF THE REEL",

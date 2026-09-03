@@ -11,6 +11,7 @@ import Characters from './Characters.astro';
 import Metrics from './Metrics.astro';
 import Gallery from './Gallery.astro';
 import Video from './Video.astro';
+import Archive from './Archive.astro';
 import Footer from './Footer.astro';
 import type { Locale } from '../i18n/ui';
 
@@ -34,6 +35,7 @@ const { lang } = Astro.props;
   <Metrics lang={lang} />
   <Gallery lang={lang} />
   <Video lang={lang} />
+  <Archive lang={lang} />
 </main>
 <Footer lang={lang} />
 
@@ -42,6 +44,7 @@ const { lang } = Astro.props;
   import ScrollTrigger from 'gsap/ScrollTrigger';
 
   gsap.registerPlugin(ScrollTrigger);
+  document.body.dataset.gsapReady = '1';
 
   const reducedMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
 
@@ -58,7 +61,7 @@ const { lang } = Astro.props;
           ease: 'power3.out',
           scrollTrigger: {
             trigger: element,
-            start: 'top 85%',
+            start: 'top bottom',
             once: true,
           },
         }

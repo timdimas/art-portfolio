@@ -37,43 +37,19 @@ const tools = [
 			</div>
 		</div>
 
-		<div class="grid gap-10 lg:grid-cols-[0.7fr_1.3fr] lg:gap-20">
-			<!-- Portrait + Bio -->
-			<div class="space-y-6">
-				<!-- Artist print -->
-				<figure class="js-reveal group relative mx-auto w-full max-w-xs">
-					<div
-						class="relative bg-bone p-3 pb-0 shadow-[0_14px_40px_rgba(0,0,0,0.55)] transition-shadow duration-500 ease-editorial group-hover:shadow-[0_24px_64px_rgba(0,0,0,0.65)]"
-					>
-						<span
-							class="pointer-events-none absolute -top-2.5 left-1/2 z-10 h-5 w-16 -translate-x-1/2 rotate-[-2deg] bg-[#C9A87C]/80 backdrop-blur-[1px]"
-							aria-hidden="true"></span>
-						<img
-							src={`${base}images/Poster.webp`}
-							alt={t.posterAlt}
-							loading="lazy"
-							decoding="async"
-							class="aspect-[3/4] w-full object-cover"
-						/>
-						<figcaption
-							class="py-2.5 text-center font-mono text-[0.68rem] uppercase tracking-[0.14em] text-carbon"
-						>
-							{t.posterCaption}
-							<span class="text-bronze-dark">{t.posterCaptionEm}</span>
-						</figcaption>
-					</div>
-				</figure>
-			</div>
-
-			<!-- Tools + Availability -->
+		<div class="grid gap-10 lg:grid-cols-[1.2fr_0.8fr] lg:gap-20">
+			<!-- Bio -->
 			<div class="space-y-6">
 				<p
 					class="js-reveal font-mono text-[0.72rem] uppercase tracking-[0.22em] text-stone/70"
 				>
 					{t.availability}
 				</p>
-				<p class="display-title js-reveal text-2xl font-light text-bone sm:text-3xl">
-					{t.identity} <span class="italic text-bronze">— {t.role}</span>
+				<p
+					class="display-title js-reveal text-3xl font-light leading-tight text-bone sm:text-4xl"
+				>
+					{t.identity}
+					<span class="italic text-bronze">— {t.role}</span>
 				</p>
 				<p class="js-reveal text-lg leading-relaxed text-stone md:text-lg">
 					{t.bio1}
@@ -81,27 +57,29 @@ const tools = [
 				<p class="js-reveal text-lg leading-relaxed text-stone">
 					{t.bio2}
 				</p>
-				<div class="js-reveal border border-ash bg-carbon p-6">
-					<p class="eyebrow mb-5">{t.toolsHeading}</p>
-					<ul class="grid grid-cols-2 gap-2 sm:grid-cols-2">
-						{
-							tools.map((tool) => (
-								<li class="group flex items-center gap-3 border border-smoke bg-coal px-4 py-3 transition-colors duration-200 hover:border-bronze">
-									<img
-										src={tool.logo}
-										alt={`${tool.name} logo`}
-										loading="lazy"
-										decoding="async"
-										class="h-5 w-5 shrink-0 opacity-80 transition-opacity duration-200 group-hover:opacity-100"
-									/>
-									<span class="font-mono text-[0.72rem] uppercase tracking-[0.16em] text-bone">
-										{tool.name}
-									</span>
-								</li>
-							))
-						}
-					</ul>
-				</div>
+			</div>
+
+			<!-- Tools -->
+			<div class="js-reveal self-end border border-ash bg-carbon p-6">
+				<p class="eyebrow mb-5">{t.toolsHeading}</p>
+				<ul class="grid grid-cols-2 gap-2 sm:grid-cols-2">
+					{
+						tools.map((tool) => (
+							<li class="group flex items-center gap-3 border border-smoke bg-coal px-4 py-3 transition-colors duration-200 hover:border-bronze">
+								<img
+									src={tool.logo}
+									alt={`${tool.name} logo`}
+									loading="lazy"
+									decoding="async"
+									class="h-5 w-5 shrink-0 opacity-80 transition-opacity duration-200 group-hover:opacity-100"
+								/>
+								<span class="font-mono text-[0.72rem] uppercase tracking-[0.16em] text-bone">
+									{tool.name}
+								</span>
+							</li>
+						))
+					}
+				</ul>
 			</div>
 
 			<!-- Education & Experience -->

@@ -12,7 +12,7 @@
 	--color-stone: #a79b8c;
 	--color-slate: #5c7177;
 
-	--font-display: "Fraunces", Georgia, serif;
+	--font-display: Georgia, "Times New Roman", serif;
 	--font-body: "Karla", "Helvetica Neue", sans-serif;
 	--font-mono: "Space Mono", "Courier New", monospace;
 
@@ -23,7 +23,6 @@
 }
 
 html {
-	scroll-behavior: smooth;
 	font-size: 17px;
 }
 
@@ -94,11 +93,12 @@ a {
 
 .display-title {
 	font-family: var(--font-display);
-	font-variation-settings:
-		"opsz" 144,
-		"SOFT" 50,
-		"WONK" 1;
 	letter-spacing: -0.015em;
+}
+
+section[id],
+footer[id] {
+	scroll-margin-top: 5.5rem;
 }
 
 .section-shell {
@@ -111,6 +111,11 @@ a {
 		padding-top: 7rem;
 		padding-bottom: 7rem;
 	}
+}
+
+/* Reveal elements start hidden only when JS (GSAP) is active */
+html.js .js-reveal {
+	opacity: 0;
 }
 
 /* Film grain overlay */
@@ -157,9 +162,6 @@ a {
 }
 
 @media (prefers-reduced-motion: reduce) {
-	html {
-		scroll-behavior: auto;
-	}
 	.grain::after {
 		animation: none;
 	}
