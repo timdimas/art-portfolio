@@ -26,16 +26,16 @@ const t = getT(lang).header;
 				class="hidden items-center gap-8 font-mono text-[0.8rem] uppercase tracking-[0.22em] text-stone sm:flex"
 				aria-label={t.navLabel}
 			>
-				<a class="transition-colors duration-200 hover:text-bronze" href="#about"
+				<a class="transition-colors duration-200 hover:text-bronze" href="#about" data-nav-link
 					>{t.nav.about}</a
 				>
-				<a class="transition-colors duration-200 hover:text-bronze" href="#featured"
+				<a class="transition-colors duration-200 hover:text-bronze" href="#featured" data-nav-link
 					>{t.nav.featured}</a
 				>
-				<a class="transition-colors duration-200 hover:text-bronze" href="#work"
+				<a class="transition-colors duration-200 hover:text-bronze" href="#work" data-nav-link
 					>{t.nav.work}</a
 				>
-				<a class="transition-colors duration-200 hover:text-bronze" href="#contact"
+				<a class="transition-colors duration-200 hover:text-bronze" href="#contact" data-nav-link
 					>{t.nav.contact}</a
 				>
 			</nav>
@@ -61,17 +61,23 @@ const t = getT(lang).header;
 		data-mobile-menu
 	>
 		<div class="grid gap-1 font-mono text-[0.78rem] uppercase tracking-[0.18em] text-stone">
-			<a class="border-b border-ash/60 py-3 transition-colors hover:text-bronze" href="#about">{t.nav.about}</a>
-			<a class="border-b border-ash/60 py-3 transition-colors hover:text-bronze" href="#featured">{t.nav.featured}</a>
-			<a class="border-b border-ash/60 py-3 transition-colors hover:text-bronze" href="#work">{t.nav.work}</a>
-			<a class="py-3 transition-colors hover:text-bronze" href="#contact">{t.nav.contact}</a>
+			<a class="border-b border-ash/60 py-3 transition-colors hover:text-bronze" href="#about" data-nav-link>{t.nav.about}</a>
+			<a class="border-b border-ash/60 py-3 transition-colors hover:text-bronze" href="#featured" data-nav-link>{t.nav.featured}</a>
+			<a class="border-b border-ash/60 py-3 transition-colors hover:text-bronze" href="#work" data-nav-link>{t.nav.work}</a>
+			<a class="py-3 transition-colors hover:text-bronze" href="#contact" data-nav-link>{t.nav.contact}</a>
 		</div>
 	</nav>
+	<div class="pointer-events-none absolute inset-x-0 bottom-0 h-px bg-ash/60">
+		<span class="block h-full origin-left scale-x-0 bg-bronze" data-scroll-progress></span>
+	</div>
 </header>
 
 <script>
 	const menuButton = document.querySelector<HTMLButtonElement>('[data-menu-button]');
 	const mobileMenu = document.querySelector<HTMLElement>('[data-mobile-menu]');
+	const header = document.querySelector<HTMLElement>('header');
+	const navigationLinks = document.querySelectorAll<HTMLAnchorElement>('[data-nav-link]');
+	const progress = document.querySelector<HTMLElement>('[data-scroll-progress]');
 
 	const closeMenu = () => {
 		if (!menuButton || !mobileMenu) return;
@@ -86,4 +92,44 @@ const t = getT(lang).header;
 	});
 
 	mobileMenu?.querySelectorAll('a').forEach((link) => link.addEventListener('click', closeMenu));
+	document.addEventListener('keydown', (event) => {
+		if (event.key === 'Escape') closeMenu();
+	});
+	document.addEventListener('click', (event) => {
+		if (mobileMenu?.classList.contains('hidden') || header?.contains(event.target as Node)) return;
+		closeMenu();
+	});
+
+	const setActiveLink = (id: string) => {
+		navigationLinks.forEach((link) => {
+			const active = link.getAttribute('href') === `#${id}`;
+			link.classList.toggle('text-bronze', active);
+			if (active) link.setAttribute('aria-current', 'location');
+			else link.removeAttribute('aria-current');
+		});
+	};
+
+	const navObserver = new IntersectionObserver(
+		(entries) => {
+			entries.forEach((entry) => {
+				if (entry.isIntersecting) setActiveLink((entry.target as HTMLElement).id);
+			});
+		},
+		{ rootMargin: '-35% 0px -55% 0px' },
+	);
+
+	navigationLinks.forEach((link) => {
+		const section = document.querySelector<HTMLElement>(link.getAttribute('href') ?? '');
+		if (section) navObserver.observe(section);
+	});
+
+	const updateProgress = () => {
+		if (!progress) return;
+		const scrollable = document.documentElement.scrollHeight - window.innerHeight;
+		progress.style.transform = `scaleX(${scrollable > 0 ? window.scrollY / scrollable : 0})`;
+	};
+
+	window.addEventListener('scroll', updateProgress, { passive: true });
+	window.addEventListener('resize', updateProgress);
+	updateProgress();
 </script>
