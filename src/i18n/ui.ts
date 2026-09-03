@@ -80,23 +80,6 @@ const el = {
 			tags: "2D/3D HYBRID · ANIMATED SHORT · CONCEPT · SOUND",
 			blurb: "Σε ένα μεσαιωνικό βασίλειο κάτω από τη σκιά της σκοτεινής μαγείας, ένας επαναστάτης αντιμετωπίζει τον τύραννο — τον άλλοτε παιδικό του φίλο.",
 		},
-		others: [
-			{
-				title: "Project 02",
-				year: "20XX",
-				note: "Πρόσθεσε το επόμενο έργο σου — εικόνα, τίτλο και μία γραμμή.",
-			},
-			{
-				title: "Project 03",
-				year: "20XX",
-				note: "Πρόσθεσε το επόμενο έργο σου — εικόνα, τίτλο και μία γραμμή.",
-			},
-			{
-				title: "Project 04",
-				year: "20XX",
-				note: "Πρόσθεσε το επόμενο έργο σου — εικόνα, τίτλο και μία γραμμή.",
-			},
-		],
 		cta: "ΔΕΣ ΤΟ ΕΡΓΟ",
 	},
 	featured: {
@@ -290,13 +273,13 @@ const el = {
 		titleAfter: "",
 		intro: "Η αφίσα του «Το Δέος της Ανθρωπότητας»",
 		posterAlt: "Αφίσα — Το Δέος της Ανθρωπότητας",
-		posterCaption: "ΑΦΙΣΑ /",
-		posterCaptionEm: "ΑΝΘΡΩΠΟΤΗΤΑΣ",
+		posterCaption: "ΑΦΙΣΑ",
+		posterCaptionEm: "",
 	},
 	footer: {
 		endLabel: "ΤΕΛΟΣ ΤΟΥ ΡΙΛ",
 		creatorHeading: "Ο ΔΗΜΙΟΥΡΓΟΣ",
-		name: "Παναγιώτης",
+		name: "Παναγιώτης ",
 		nameEm: "Βασδάρης",
 		contactHeading: "ΕΠΙΚΟΙΝΩΝΙΑ",
 		creditsText:
@@ -383,23 +366,6 @@ const en: UI = {
 			tags: "2D/3D HYBRID · ANIMATED SHORT · CONCEPT · SOUND",
 			blurb: "In a medieval kingdom under the shadow of dark magic, a rebel confronts the tyrant — his former childhood friend.",
 		},
-		others: [
-			{
-				title: "Project 02",
-				year: "20XX",
-				note: "Add your next work — image, title and one line.",
-			},
-			{
-				title: "Project 03",
-				year: "20XX",
-				note: "Add your next work — image, title and one line.",
-			},
-			{
-				title: "Project 04",
-				year: "20XX",
-				note: "Add your next work — image, title and one line.",
-			},
-		],
 		cta: "VIEW THE WORK",
 	},
 	featured: {
@@ -599,7 +565,7 @@ const en: UI = {
 	footer: {
 		endLabel: "END OF THE REEL",
 		creatorHeading: "THE CREATOR",
-		name: "Panayotis",
+		name: "Panayotis ",
 		nameEm: "Vasdaris",
 		contactHeading: "CONTACT",
 		creditsText:

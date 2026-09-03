@@ -61,25 +61,5 @@ const featured = {
       </span>
     </a>
 
-    <!-- Other projects -->
-    <div class="mt-px grid gap-px border border-ash bg-ash sm:grid-cols-3">
-      {
-        t.others.map((p, i) => (
-          <article class="js-reveal group relative flex min-h-[260px] flex-col justify-between overflow-hidden border border-ash bg-carbon p-8">
-            <div class="flex items-center justify-between">
-              <span class="display-title text-3xl font-light italic text-bronze/60">
-                {String(i + 2).padStart(2, '0')}
-              </span>
-              <span class="font-mono text-[0.72rem] uppercase tracking-[0.22em] text-stone">{p.year}</span>
-            </div>
-            <div>
-              <h3 class="font-mono text-xs uppercase tracking-[0.22em] text-bone">{p.title}</h3>
-              <p class="mt-2 text-lg leading-relaxed text-stone">{p.note}</p>
-            </div>
-            <span class="absolute inset-0 border border-bronze/0 transition-colors duration-300 group-hover:border-bronze/40"></span>
-          </article>
-        ))
-      }
-    </div>
   </div>
 </section>

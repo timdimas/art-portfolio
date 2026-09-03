@@ -63,6 +63,7 @@ const { lang } = Astro.props;
             trigger: element,
             start: 'top bottom',
             once: true,
+            invalidateOnRefresh: true,
           },
         }
       );
@@ -88,4 +89,6 @@ const { lang } = Astro.props;
       el.style.transform = 'none';
     });
   }
+
+  window.addEventListener('load', () => ScrollTrigger.refresh(), { once: true });
 </script>

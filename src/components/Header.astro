@@ -14,7 +14,7 @@ const t = getT(lang).header;
 	<div class="container flex items-center justify-between gap-6 py-3">
 		<a
 			href="#top"
-			class="group flex items-center gap-3 font-mono text-lg uppercase tracking-[0.22em] text-bone"
+			class="group flex min-w-0 max-w-[45vw] flex-1 items-center gap-3 truncate font-mono text-lg uppercase tracking-[0.22em] text-bone sm:max-w-none sm:flex-none"
 		>
 			<!-- <span
 				class="inline-block h-2.5 w-2.5 rounded-full bg-bronze transition-transform duration-200 group-hover:scale-125"
@@ -39,7 +39,51 @@ const t = getT(lang).header;
 					>{t.nav.contact}</a
 				>
 			</nav>
+			<button
+				type="button"
+				class="grid h-10 w-10 place-items-center border border-ash text-stone transition-colors hover:border-bronze hover:text-bronze sm:hidden"
+				aria-label={t.navLabel}
+				aria-controls="mobile-navigation"
+				aria-expanded="false"
+				data-menu-button
+			>
+				<svg class="h-5 w-5" viewBox="0 0 20 20" fill="none" aria-hidden="true">
+					<path d="M3 6h14M3 10h14M3 14h14" stroke="currentColor" stroke-width="1.5" />
+				</svg>
+			</button>
 			<LanguageToggle lang={lang} />
 		</div>
 	</div>
+	<nav
+		id="mobile-navigation"
+		class="hidden border-t border-ash/60 bg-carbon px-5 py-4 sm:hidden"
+		aria-label={t.navLabel}
+		data-mobile-menu
+	>
+		<div class="grid gap-1 font-mono text-[0.78rem] uppercase tracking-[0.18em] text-stone">
+			<a class="border-b border-ash/60 py-3 transition-colors hover:text-bronze" href="#about">{t.nav.about}</a>
+			<a class="border-b border-ash/60 py-3 transition-colors hover:text-bronze" href="#featured">{t.nav.featured}</a>
+			<a class="border-b border-ash/60 py-3 transition-colors hover:text-bronze" href="#work">{t.nav.work}</a>
+			<a class="py-3 transition-colors hover:text-bronze" href="#contact">{t.nav.contact}</a>
+		</div>
+	</nav>
 </header>
+
+<script>
+	const menuButton = document.querySelector<HTMLButtonElement>('[data-menu-button]');
+	const mobileMenu = document.querySelector<HTMLElement>('[data-mobile-menu]');
+
+	const closeMenu = () => {
+		if (!menuButton || !mobileMenu) return;
+		mobileMenu.classList.add('hidden');
+		menuButton.setAttribute('aria-expanded', 'false');
+	};
+
+	menuButton?.addEventListener('click', () => {
+		if (!mobileMenu) return;
+		const isOpen = !mobileMenu.classList.toggle('hidden');
+		menuButton.setAttribute('aria-expanded', String(isOpen));
+	});
+
+	mobileMenu?.querySelectorAll('a').forEach((link) => link.addEventListener('click', closeMenu));
+</script>

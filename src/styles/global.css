@@ -101,6 +101,10 @@ footer[id] {
 	scroll-margin-top: 5.5rem;
 }
 
+html {
+	scroll-behavior: smooth;
+}
+
 .section-shell {
 	padding-top: 5rem;
 	padding-bottom: 5rem;
