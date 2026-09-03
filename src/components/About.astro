@@ -1,5 +1,5 @@
 ---
-import { format, getT, type Locale } from "../i18n/ui";
+import { getT, type Locale } from "../i18n/ui";
 
 interface Props {
 	lang: Locale;
@@ -72,8 +72,11 @@ const tools = [
 				>
 					{t.availability}
 				</p>
+				<p class="display-title js-reveal text-2xl font-light text-bone sm:text-3xl">
+					{t.identity} <span class="italic text-bronze">— {t.role}</span>
+				</p>
 				<p class="js-reveal text-lg leading-relaxed text-stone md:text-lg">
-					{format(t.bio1, { name: t.identity })}
+					{t.bio1}
 				</p>
 				<p class="js-reveal text-lg leading-relaxed text-stone">
 					{t.bio2}

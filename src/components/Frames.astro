@@ -25,11 +25,13 @@ const frames = getFrames();
 				<h2
 					class="display-title js-reveal text-4xl font-light leading-tight text-bone sm:text-5xl lg:text-6xl"
 				>
-					{t.title} <span class="italic text-bronze">{t.titleEm}</span> {t.titleAfter}
+					{t.title}
+					<span class="italic text-bronze">{t.titleEm}</span>
+					{t.titleAfter}
 				</h2>
-				<p class="js-reveal text-lg leading-relaxed text-stone">
+				<!-- <p class="js-reveal text-lg leading-relaxed text-stone">
 					{t.intro}
-				</p>
+				</p> -->
 			</div>
 
 			<p class="js-reveal font-mono text-[0.78rem] uppercase tracking-[0.22em] text-stone">
@@ -58,7 +60,10 @@ const frames = getFrames();
 							data-frame
 							data-tc={frame.timecode}
 							src={frame.src}
-							alt={format(t.frameAlt, { index: frame.index, timecode: frame.timecode })}
+							alt={format(t.frameAlt, {
+								index: frame.index,
+								timecode: frame.timecode,
+							})}
 							loading="lazy"
 							decoding="async"
 							width={20}
@@ -120,7 +125,10 @@ const frames = getFrames();
 					<button
 						data-thumb
 						data-index={frame.index}
-						aria-label={format(t.thumbAria, { index: frame.index, timecode: frame.timecode })}
+						aria-label={format(t.thumbAria, {
+							index: frame.index,
+							timecode: frame.timecode,
+						})}
 						class="group relative shrink-0 border transition-colors duration-200"
 						type="button"
 					>
@@ -139,9 +147,9 @@ const frames = getFrames();
 			}
 		</div>
 
-		<p class="mt-4 font-mono text-[0.72rem] uppercase tracking-[0.22em] text-stone/70">
+		<!-- <p class="mt-4 font-mono text-[0.72rem] uppercase tracking-[0.22em] text-stone/70">
 			{t.footnote}
-		</p>
+		</p> -->
 	</div>
 </section>
 
