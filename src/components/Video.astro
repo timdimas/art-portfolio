@@ -1,4 +1,12 @@
 ---
+import { getT, type Locale } from '../i18n/ui';
+
+interface Props {
+  lang: Locale;
+}
+
+const { lang } = Astro.props;
+const t = getT(lang).video;
 const base = import.meta.env.BASE_URL + '/';
 ---
 
@@ -8,12 +16,12 @@ const base = import.meta.env.BASE_URL + '/';
   <div class="container">
     <div class="mb-10 flex flex-wrap items-end justify-between gap-6">
       <div class="max-w-xl space-y-4">
-        <p class="eyebrow js-reveal">ΒΙΝΤΕΟ / WATCH</p>
+        <p class="eyebrow js-reveal">{t.eyebrow}</p>
         <h2 class="display-title js-reveal text-4xl font-light leading-tight text-bone sm:text-5xl lg:text-6xl">
-          Δες το να <span class="italic text-bronze">κινείται</span>
+          {t.title} <span class="italic text-bronze">{t.titleEm}</span> {t.titleAfter}
         </h2>
         <p class="js-reveal text-lg leading-relaxed text-stone">
-          Το trailer και το πλήρες φιλμ. Κάθε καρέ που είδες πιο πάνω — εδώ έχει ήχο, ρυθμό και χρόνο.
+          {t.intro}
         </p>
       </div>
       <p class="js-reveal font-mono text-[0.78rem] uppercase tracking-[0.22em] text-stone">
@@ -38,7 +46,7 @@ const base = import.meta.env.BASE_URL + '/';
           </span>
         </div>
         <figcaption class="flex items-center justify-between gap-4 border-t border-ash px-5 py-4 font-mono text-[0.72rem] uppercase tracking-[0.22em] text-stone">
-          <span>ΤΟ ΔΕΟΣ ΤΗΣ ΑΝΘΡΩΠΟΤΗΤΑΣ</span>
+          <span>{t.filmTitle}</span>
           <span class="text-bronze">00:24</span>
         </figcaption>
       </figure>
@@ -53,7 +61,7 @@ const base = import.meta.env.BASE_URL + '/';
         >
           <img
             src={`${base}images/main-poster.webp`}
-            alt="Το Δέος της Ανθρωπότητας — πλήρες φιλμ στο YouTube"
+            alt={t.posterAlt}
             loading="lazy"
             decoding="async"
             class="absolute inset-0 h-full w-full object-cover transition-transform duration-700 ease-editorial group-hover/link:scale-[1.03]"
@@ -67,11 +75,11 @@ const base = import.meta.env.BASE_URL + '/';
             FULL FILM
           </span>
           <span class="absolute inset-x-0 bottom-0 bg-gradient-to-t from-carbon/80 to-transparent px-4 pb-3 pt-8 font-mono text-[0.68rem] uppercase tracking-[0.22em] text-bone/80 opacity-0 transition-opacity duration-300 group-hover/link:opacity-100">
-            ΑΝΟΙΓΕΙ ΣΤΟ YOUTUBE →
+            {t.opensOn}
           </span>
         </a>
         <figcaption class="flex items-center justify-between gap-4 border-t border-ash px-5 py-4 font-mono text-[0.72rem] uppercase tracking-[0.22em] text-stone">
-          <span>ΠΛΗΡΕΣ ΦΙΛΜ</span>
+          <span>{t.fullFilmCaption}</span>
           <span class="text-bronze">YOUTUBE ↗</span>
         </figcaption>
       </figure>

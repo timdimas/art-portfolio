@@ -1,7 +1,14 @@
 ---
 import { Image } from "astro:assets";
 import { getFrames } from "../lib/frames";
+import { format, getT, type Locale } from "../i18n/ui";
 
+interface Props {
+	lang: Locale;
+}
+
+const { lang } = Astro.props;
+const t = getT(lang).frames;
 const frames = getFrames();
 ---
 
@@ -14,20 +21,19 @@ const frames = getFrames();
 	<div class="container">
 		<div class="mb-10 flex flex-wrap items-end justify-between gap-6">
 			<div class="max-w-xl space-y-4">
-				<p class="eyebrow js-reveal">ΤΟ ΡΙΛ / ΚΑΡΕ ΚΑΡΕ</p>
+				<p class="eyebrow js-reveal">{t.eyebrow}</p>
 				<h2
 					class="display-title js-reveal text-4xl font-light leading-tight text-bone sm:text-5xl lg:text-6xl"
 				>
-					Δες το να κινείται, <span class="italic text-bronze">καρέ καρέ</span>
+					{t.title} <span class="italic text-bronze">{t.titleEm}</span> {t.titleAfter}
 				</h2>
 				<p class="js-reveal text-lg leading-relaxed text-stone">
-					Πραγματικά καρέ από το τελικό cut. Προχώρα με τα βέλη ή το πληκτρολόγιο — κάθε
-					καρέ κουβαλά τον χρόνο του μέσα από το ίδιο το φιλμ.
+					{t.intro}
 				</p>
 			</div>
 
 			<p class="js-reveal font-mono text-[0.78rem] uppercase tracking-[0.22em] text-stone">
-				{frames.length} ΚΑΡΕ / ΒΕΛΗ ← → Ή ΚΛΙΚ
+				{format(t.counter, { count: frames.length })}
 			</p>
 		</div>
 
@@ -52,7 +58,7 @@ const frames = getFrames();
 							data-frame
 							data-tc={frame.timecode}
 							src={frame.src}
-							alt={`Καρέ ${frame.index} στο ${frame.timecode}`}
+							alt={format(t.frameAlt, { index: frame.index, timecode: frame.timecode })}
 							loading="lazy"
 							decoding="async"
 							width={20}
@@ -69,7 +75,7 @@ const frames = getFrames();
 					<button
 						data-prev
 						class="pointer-events-auto grid h-12 w-12 place-items-center border border-bone/25 bg-carbon/55 text-bone backdrop-blur-sm transition-all duration-200 hover:border-bronze hover:text-bronze sm:h-14 sm:w-14"
-						aria-label="Προηγούμενο καρέ"
+						aria-label={t.prevAria}
 						type="button"
 					>
 						<svg class="h-5 w-5" viewBox="0 0 16 16" fill="none" aria-hidden="true">
@@ -81,7 +87,7 @@ const frames = getFrames();
 					<button
 						data-next
 						class="pointer-events-auto grid h-12 w-12 place-items-center border border-bone/25 bg-carbon/55 text-bone backdrop-blur-sm transition-all duration-200 hover:border-bronze hover:text-bronze sm:h-14 sm:w-14"
-						aria-label="Επόμενο καρέ"
+						aria-label={t.nextAria}
 						type="button"
 					>
 						<svg class="h-5 w-5" viewBox="0 0 16 16" fill="none" aria-hidden="true">
@@ -114,7 +120,7 @@ const frames = getFrames();
 					<button
 						data-thumb
 						data-index={frame.index}
-						aria-label={`Πήγαινε στο καρέ ${frame.index} στο ${frame.timecode}`}
+						aria-label={format(t.thumbAria, { index: frame.index, timecode: frame.timecode })}
 						class="group relative shrink-0 border transition-colors duration-200"
 						type="button"
 					>
@@ -134,7 +140,7 @@ const frames = getFrames();
 		</div>
 
 		<p class="mt-4 font-mono text-[0.72rem] uppercase tracking-[0.22em] text-stone/70">
-			Καρέ από το τελικό cut. GIF και βίντεο μπορούν να προστεθούν εδώ αργότερα.
+			{t.footnote}
 		</p>
 	</div>
 </section>

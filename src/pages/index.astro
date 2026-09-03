@@ -1,88 +1,11 @@
 ---
 import BaseLayout from '../layouts/BaseLayout.astro';
-import Header from '../components/Header.astro';
-import Hero from '../components/Hero.astro';
-import About from '../components/About.astro';
-import Work from '../components/Work.astro';
-import Featured from '../components/Featured.astro';
-import Frames from '../components/Frames.astro';
-import Story from '../components/Story.astro';
-import Vision from '../components/Vision.astro';
-import Pipeline from '../components/Pipeline.astro';
-import Characters from '../components/Characters.astro';
-import Metrics from '../components/Metrics.astro';
-import Gallery from '../components/Gallery.astro';
-import Video from '../components/Video.astro';
-import Footer from '../components/Footer.astro';
+import Home from '../components/Home.astro';
+import { getT } from '../i18n/ui';
+
+const t = getT('el');
 ---
 
-<BaseLayout
-  title="ΟΝΟΜΑ ΕΠΩΝΥΜΟ — 2D/3D Animator · Concept Artist · Sound Designer"
-  description="Πορτφόλιο 2D/3D καλλιτέχνη. Επιλεγμένα έργα, εκπαίδευση, εμπειρία και το κύριο project «Το Δέος της Ανθρωπότητας»."
->
-  <Header />
-  <main>
-    <Hero />
-    <About />
-    <Featured />
-    <Frames />
-    <Story />
-    <Vision />
-    <Pipeline />
-    <Characters />
-    <Metrics />
-    <Gallery />
-    <Video />
-  </main>
-  <Footer />
-
-  <script>
-    import gsap from 'gsap';
-    import ScrollTrigger from 'gsap/ScrollTrigger';
-
-    gsap.registerPlugin(ScrollTrigger);
-
-    const reducedMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
-
-    if (!reducedMotion) {
-      const revealGroups = gsap.utils.toArray<HTMLElement>('.js-reveal');
-      revealGroups.forEach((element) => {
-        gsap.fromTo(
-          element,
-          { autoAlpha: 0, y: 28 },
-          {
-            autoAlpha: 1,
-            y: 0,
-            duration: 0.8,
-            ease: 'power3.out',
-            scrollTrigger: {
-              trigger: element,
-              start: 'top 85%',
-              once: true,
-            },
-          }
-        );
-      });
-
-      gsap.fromTo(
-        '.hero-parallax',
-        { y: -12 },
-        {
-          y: 18,
-          ease: 'none',
-          scrollTrigger: {
-            trigger: '.hero-parallax',
-            scrub: true,
-            start: 'top top',
-            end: 'bottom top',
-          },
-        }
-      );
-    } else {
-      document.querySelectorAll<HTMLElement>('.js-reveal').forEach((el) => {
-        el.style.opacity = '1';
-        el.style.transform = 'none';
-      });
-    }
-  </script>
+<BaseLayout lang="el" title={t.meta.title} description={t.meta.description}>
+  <Home lang="el" />
 </BaseLayout>

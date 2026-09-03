@@ -1,32 +1,27 @@
 ---
-const facts = [
-  { label: 'FORMAT', value: 'Ταινία μικρού μήκους · 2D/3D Hybrid' },
-  { label: 'ΕΙΔΟΣ', value: 'Dark Fantasy' },
-  { label: 'ΡΟΛΟΣ', value: 'Concept · Animation · Σκηνοθεσία · Sound' },
-  { label: 'ΕΤΟΣ', value: '2025' },
-];
-const beats = [
-  { id: '01', title: 'BERNEBURG', text: 'Ένα μεσαιωνικό βασίλειο υποδουλωμένο στη σκοτεινή μαγεία. Ο λαός ζει υπό την τυραννία του Kembrak, ενός ηγεμόνα που κυβερνά μέσω του φόβου.' },
-  { id: '02', title: 'UTIO', text: 'Ο πρώην παιδικός φίλος του Kembrak και επιζών μιας αιματηρής εξέγερσης. Τραυματισμένος, αποτελεί την τελευταία ελπίδα του λαού.' },
-  { id: '03', title: 'Η ΣΥΝΑΝΤΗΣΗ', text: 'Ο επαναστάτης καλείται να αντιμετωπίσει τον τύραννο — τον άλλοτε παιδικό του φίλο. Η πάλη ανάμεσα στον προσωπικό δεσμό και το καθήκον.' },
-];
+import { getT, type Locale } from '../i18n/ui';
+
+interface Props {
+  lang: Locale;
+}
+
+const { lang } = Astro.props;
+const t = getT(lang).story;
 ---
 
 <section class="section-shell border-t border-ash bg-coal" id="story">
   <div class="container grid gap-12 lg:grid-cols-[0.8fr_1.2fr] lg:gap-20">
     <div class="space-y-4">
-      <p class="eyebrow js-reveal">Η ΙΣΤΟΡΙΑ / ΠΙΣΩ ΑΠΟ ΤΟ ΦΙΛΜ</p>
+      <p class="eyebrow js-reveal">{t.eyebrow}</p>
       <h2 class="display-title js-reveal text-4xl font-light leading-tight text-bone sm:text-5xl">
-        Η φιλία, η εξιλέωση και <span class="italic text-bronze">η ανθρώπινη φύση</span>
+        {t.title} <span class="italic text-bronze">{t.titleEm}</span> {t.titleAfter}
       </h2>
       <p class="js-reveal text-lg leading-relaxed text-stone">
-        Το Δέος της Ανθρωπότητας χρησιμοποιεί τη σκοτεινή φαντασία ως καμβά για να
-        εξερευνήσει σύγχρονους προβληματισμούς — τη βία του πολέμου και την εσωτερική
-        σύγκρουση ανάμεσα στον προσωπικό δεσμό και το καθήκον.
+        {t.intro}
       </p>
 
       <dl class="js-reveal mt-8 border-t border-ash">
-        {facts.map((f) => (
+        {t.facts.map((f) => (
           <div class="flex items-baseline justify-between gap-4 border-b border-ash py-3">
             <dt class="font-mono text-[0.72rem] uppercase tracking-[0.22em] text-stone">{f.label}</dt>
             <dd class="text-right font-mono text-xs text-bone">{f.value}</dd>
@@ -37,7 +32,7 @@ const beats = [
 
     <div class="space-y-10">
       {
-        beats.map((b) => (
+        t.beats.map((b) => (
           <article class="js-reveal grid grid-cols-[auto_1fr] gap-6 border-l border-ash pl-6">
             <span class="display-title text-3xl font-light italic text-bronze/70">{b.id}</span>
             <div>
@@ -50,10 +45,10 @@ const beats = [
 
       <blockquote class="js-reveal border-l-2 border-bronze pl-6">
         <p class="display-title text-2xl font-light italic leading-snug text-bone sm:text-3xl">
-          «Ένας άνθρωπος γίνεται τέρας όταν ο φόβος γίνεται εξουσία.»
+          {t.quote}
         </p>
         <cite class="mt-3 block font-mono text-[0.72rem] uppercase tracking-[0.22em] text-stone not-italic">
-          KEMBRAK — ΑΠΟ ΤΟ ΦΙΛΜ
+          {t.cite}
         </cite>
       </blockquote>
     </div>

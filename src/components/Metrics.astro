@@ -1,11 +1,12 @@
 ---
-const stats = [
-  { value: '4.000+', label: 'Χειροποίητα καρέ & στρώματα χρώματος' },
-  { value: '25', label: '3D περιβάλλοντα' },
-  { value: '70', label: '2D φόντα' },
-  { value: '30', label: 'Υβριδικά (2D/3D) φόντα' },
-  { value: '70+', label: 'Custom 2D & 3D props' },
-];
+import { getT, type Locale } from '../i18n/ui';
+
+interface Props {
+  lang: Locale;
+}
+
+const { lang } = Astro.props;
+const t = getT(lang).metrics;
 ---
 
 <section class="section-shell border-t border-ash bg-carbon" id="metrics">
@@ -14,17 +15,17 @@ const stats = [
       <div class="max-w-xl space-y-4">
         <p class="eyebrow js-reveal">STATS / PROJECT BREAKDOWN</p>
         <h2 class="display-title js-reveal text-4xl font-light leading-tight text-bone sm:text-5xl lg:text-6xl">
-          Το έργο <span class="italic text-bronze">σε αριθμούς</span>
+          {t.title} <span class="italic text-bronze">{t.titleEm}</span> {t.titleAfter}
         </h2>
       </div>
       <p class="js-reveal max-w-xs text-lg leading-relaxed text-stone">
-        Τα πραγματικά μεγέθη της παραγωγής — τι χρειάστηκε για να ζωντανέψει ο κόσμος του Berneburg.
+        {t.intro}
       </p>
     </div>
 
     <dl class="js-reveal grid grid-cols-2 gap-px border border-ash bg-ash md:grid-cols-3 lg:grid-cols-5">
       {
-        stats.map((s) => (
+        t.stats.map((s) => (
           <div class="flex flex-col justify-between gap-8 bg-coal p-6 sm:p-8">
             <dd class="display-title text-5xl font-light text-bone sm:text-6xl">
               {s.value}

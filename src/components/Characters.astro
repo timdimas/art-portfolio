@@ -1,28 +1,17 @@
 ---
-const base = import.meta.env.BASE_URL + '/';
-const duel = [
-  {
-    name: 'UTIO',
-    role: 'Ο ΕΠΑΝΑΣΤΑΤΗΣ',
-    text: 'Επιζών μιας αιματηρής εξέγερσης. Τραυματισμένος, φέρνει την τελευταία ελπίδα του λαού — και το βάρος μιας παλιάς φιλίας.',
-    img: `${base}pipeline/Utio.jpg`,
-    side: 'LEFT',
-  },
-  {
-    name: 'KEMBRAK',
-    role: 'Ο ΤΥΡΑΝΝΟΣ',
-    text: 'Ο ηγεμόνας του Berneburg που κυβερνά μέσω του φόβου. Ο άλλοτε παιδικός φίλος του Utio — το τέρας που έγινε από άνθρωπο.',
-    img: `${base}pipeline/Kembrak.jpg`,
-    side: 'RIGHT',
-  },
-];
+import { getT, type Locale } from '../i18n/ui';
 
-const fight = [
-  { src: `${base}gifs/gif.11.mp4`, label: 'SEQ 01 / Η ΑΡΧΗ' },
-  { src: `${base}gifs/gif.12.mp4`, label: 'SEQ 02 / Η ΕΠΙΘΕΣΗ' },
-  { src: `${base}gifs/gif.37.mp4`, label: 'SEQ 03 / Η ΑΝΤΑΛΛΑΓΗ' },
-  { src: `${base}gifs/gif.21.mp4`, label: 'SEQ 04 / ΤΟ ΤΕΛΟΣ' },
-];
+interface Props {
+  lang: Locale;
+}
+
+const { lang } = Astro.props;
+const t = getT(lang).characters;
+const base = import.meta.env.BASE_URL + '/';
+const duelImgs = ['Utio.jpg', 'Kembrak.jpg'];
+const duel = t.duel.map((character, i) => ({ ...character, img: `${base}pipeline/${duelImgs[i]}` }));
+const fightSrcs = ['gif.11.mp4', 'gif.12.mp4', 'gif.37.mp4', 'gif.21.mp4'];
+const fight = t.fight.map((seq, i) => ({ ...seq, src: `${base}gifs/${fightSrcs[i]}` }));
 ---
 
 <section class="section-shell relative overflow-hidden border-t border-ash bg-carbon" id="characters">
@@ -31,13 +20,12 @@ const fight = [
   <div class="container relative">
     <div class="mb-12 flex flex-wrap items-end justify-between gap-6">
       <div class="max-w-xl space-y-4">
-        <p class="eyebrow js-reveal">ΣΧΕΔΙΑΣΜΟΣ ΧΑΡΑΚΤΗΡΩΝ / CHARACTER DESIGN</p>
+        <p class="eyebrow js-reveal">{t.eyebrow}</p>
         <h2 class="display-title js-reveal text-4xl font-light leading-tight text-bone sm:text-5xl lg:text-6xl">
-          Δύο φίλοι, <span class="italic text-bronze">δύο κόσμοι</span>
+          {t.title} <span class="italic text-bronze">{t.titleEm}</span> {t.titleAfter}
         </h2>
         <p class="js-reveal text-lg leading-relaxed text-stone">
-          Ο επαναστάτης και ο τύραννος — σχεδιασμένοι ο ένας για τον άλλον. Τα φύλλα
-          χαρακτήρων πάνω στο light table, και η μάχη τους σε κίνηση.
+          {t.intro}
         </p>
       </div>
       <p class="js-reveal font-mono text-[0.78rem] uppercase tracking-[0.22em] text-stone">
@@ -48,7 +36,7 @@ const fight = [
     <!-- Showdown -->
     <div class="grid gap-px border border-ash bg-ash md:grid-cols-2">
       {
-        duel.map((c, i) => (
+        duel.map((c) => (
           <article class="js-reveal group relative bg-coal">
             <div class="relative overflow-hidden bg-bone/95">
               <img
@@ -61,7 +49,7 @@ const fight = [
               <span
                 class="pointer-events-none absolute top-0 z-10 bg-carbon/85 px-3 py-1.5 font-mono text-[0.62rem] uppercase tracking-[0.22em] text-bronze"
               >
-                ΦΥΛΛΟ ΧΑΡΑΚΤΗΡΑ
+                {t.badge}
               </span>
             </div>
             <div class="p-8 md:p-10">
@@ -79,9 +67,9 @@ const fight = [
     <!-- The fight in motion -->
     <div class="mt-px border border-ash bg-carbon">
       <div class="flex items-center justify-between gap-4 border-b border-ash px-5 py-4">
-        <p class="eyebrow">Η ΜΑΧΗ / THE FIGHT</p>
+        <p class="eyebrow">{t.fightHeading}</p>
         <p class="font-mono text-[0.72rem] uppercase tracking-[0.22em] text-stone">
-          4 ΚΑΡΕ ΣΕ ΚΙΝΗΣΗ
+          {t.fightCount}
         </p>
       </div>
       <div class="grid gap-px bg-ash sm:grid-cols-2 lg:grid-cols-4">

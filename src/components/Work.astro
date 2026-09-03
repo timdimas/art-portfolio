@@ -1,33 +1,31 @@
 ---
+import { getT, type Locale } from '../i18n/ui';
+
+interface Props {
+  lang: Locale;
+}
+
+const { lang } = Astro.props;
+const t = getT(lang).work;
 const base = import.meta.env.BASE_URL + '/';
 const featured = {
-  title: 'Το Δέος της Ανθρωπότητας',
-  en: 'THE AWE OF HUMANITY',
-  year: '2026',
-  tags: '2D/3D HYBRID · ANIMATED SHORT · CONCEPT · SOUND',
-  blurb: 'Σε ένα μεσαιωνικό βασίλειο κάτω από τη σκιά της σκοτεινής μαγείας, ένας επαναστάτης αντιμετωπίζει τον τύραννο — τον άλλοτε παιδικό του φίλο.',
+  ...t.featured,
   href: '#featured',
   poster: `${base}images/main-poster.webp`,
 };
-
-const others = [
-  { title: 'Project 02', year: '20XX', note: 'Πρόσθεσε το επόμενο έργο σου — εικόνα, τίτλο και μία γραμμή.' },
-  { title: 'Project 03', year: '20XX', note: 'Πρόσθεσε το επόμενο έργο σου — εικόνα, τίτλο και μία γραμμή.' },
-  { title: 'Project 04', year: '20XX', note: 'Πρόσθεσε το επόμενο έργο σου — εικόνα, τίτλο και μία γραμμή.' },
-];
 ---
 
 <section class="section-shell border-t border-ash bg-carbon" id="work">
   <div class="container">
     <div class="mb-10 flex flex-wrap items-end justify-between gap-6">
       <div class="max-w-xl space-y-4">
-        <p class="eyebrow js-reveal">ΣΕΛ. 03 / ΕΠΙΛΕΓΜΕΝΑ ΕΡΓΑ</p>
+        <p class="eyebrow js-reveal">{t.eyebrow}</p>
         <h2 class="display-title js-reveal text-4xl font-light leading-tight text-bone sm:text-5xl lg:text-6xl">
-          Η δουλειά <span class="italic text-bronze">που με εκπροσωπεί</span>
+          {t.title} <span class="italic text-bronze">{t.titleEm}</span> {t.titleAfter}
         </h2>
       </div>
       <p class="js-reveal max-w-xs text-lg leading-relaxed text-stone">
-        Το κύριο έργο μου προβάλλεται πρώτο. Τα υπόλοιπα projects προστίθενται καθώς ολοκληρώνονται.
+        {t.intro}
       </p>
     </div>
 
@@ -53,7 +51,7 @@ const others = [
           <p class="mt-1 font-mono text-[0.75rem] uppercase tracking-[0.22em] text-stone">{featured.en} / {featured.year}</p>
           <p class="mt-4 max-w-lg text-lg leading-relaxed text-bone/80">{featured.blurb}</p>
           <p class="mt-6 inline-flex items-center gap-2 font-mono text-[0.75rem] uppercase tracking-[0.22em] text-bronze">
-            ΔΕΣ ΤΟ ΕΡΓΟ
+            {t.cta}
             <span class="transition-transform duration-300 group-hover:translate-x-1">→</span>
           </p>
         </div>
@@ -66,7 +64,7 @@ const others = [
     <!-- Other projects -->
     <div class="mt-px grid gap-px border border-ash bg-ash sm:grid-cols-3">
       {
-        others.map((p, i) => (
+        t.others.map((p, i) => (
           <article class="js-reveal group relative flex min-h-[260px] flex-col justify-between overflow-hidden border border-ash bg-carbon p-8">
             <div class="flex items-center justify-between">
               <span class="display-title text-3xl font-light italic text-bronze/60">

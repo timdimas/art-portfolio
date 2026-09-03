@@ -1,0 +1,11 @@
+---
+import BaseLayout from '../../layouts/BaseLayout.astro';
+import Home from '../../components/Home.astro';
+import { getT } from '../../i18n/ui';
+
+const t = getT('en');
+---
+
+<BaseLayout lang="en" title={t.meta.title} description={t.meta.description}>
+  <Home lang="en" />
+</BaseLayout>

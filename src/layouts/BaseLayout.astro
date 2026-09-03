@@ -1,20 +1,39 @@
 ---
 import '../styles/global.css';
+import { defaultLocale, getT, type Locale } from '../i18n/ui';
 
-const {
-  title = 'Placeholder — Animated Short Film',
-  description = 'A portfolio presented as a film reel: poster, frames, and the story behind the work.',
-} = Astro.props;
+interface Props {
+  lang?: Locale;
+  title?: string;
+  description?: string;
+}
+
+const { lang = defaultLocale, title, description } = Astro.props;
+const t = getT(lang);
+const pageTitle = title ?? t.meta.title;
+const pageDescription = description ?? t.meta.description;
+
+const site = Astro.site ?? new URL('https://timdimas.github.io');
+const base = import.meta.env.BASE_URL.replace(/\/+$/, '');
+const urlFor = (locale: Locale) =>
+  new URL(locale === defaultLocale ? `${base}/` : `${base}/${locale}/`, site).href;
+
+const alternates = [
+  { hreflang: 'el', href: urlFor('el') },
+  { hreflang: 'en', href: urlFor('en') },
+  { hreflang: 'x-default', href: urlFor(defaultLocale) },
+];
 ---
 
 <!doctype html>
-<html lang="en">
+<html lang={lang}>
   <head>
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1" />
-    <meta name="description" content={description} />
+    <meta name="description" content={pageDescription} />
     <meta name="theme-color" content="#12100E" />
-    <title>{title}</title>
+    <title>{pageTitle}</title>
+    {alternates.map((alt) => <link rel="alternate" hreflang={alt.hreflang} href={alt.href} />)}
     <link rel="preconnect" href="https://fonts.googleapis.com" />
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin="anonymous" />
     <link

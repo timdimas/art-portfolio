@@ -1,42 +1,13 @@
 ---
+import { format, getT, type Locale } from "../i18n/ui";
+
+interface Props {
+	lang: Locale;
+}
+
+const { lang } = Astro.props;
+const t = getT(lang).about;
 const base = import.meta.env.BASE_URL + "/";
-const identity = "ΟΝΟΜΑ ΕΠΩΝΥΜΟ";
-
-const education = [
-	{
-		year: "20XX",
-		title: "Σχολή / Τμήμα",
-		org: "Πανεπιστήμιο ή σχολή",
-		note: "Τίτλος σπουδών — πρόσθεσε τα πραγματικά στοιχεία.",
-	},
-	{
-		year: "20XX",
-		title: "Σεμινάριο / Εργαστήριο",
-		org: "Φορέας",
-		note: "Εξειδίκευση σε animation ή concept art.",
-	},
-];
-
-const experience = [
-	{
-		year: "20XX—",
-		title: "Freelance 2D/3D Artist",
-		org: "Ανεξάρτητη εργασία",
-		note: "Animation, concept art, sound design.",
-	},
-	{
-		year: "20XX",
-		title: "Role / Project",
-		org: "Ομάδα ή πελάτης",
-		note: "Περιγραφή ρόλου και ευθυνών.",
-	},
-	{
-		year: "20XX",
-		title: "Το Δέος της Ανθρωπότητας",
-		org: "Προσωπικό έργο",
-		note: "Concept, animation, σκηνοθεσία, sound design — ταινία μικρού μήκους 2D/3D.",
-	},
-];
 
 const tools = [
 	{ name: "Clip Studio Paint", logo: `${base}tools/clip-studio.png` },
@@ -55,11 +26,13 @@ const tools = [
 	<div class="container">
 		<div class="mb-10 flex flex-wrap items-end justify-between gap-6">
 			<div class="max-w-xl space-y-4">
-				<p class="eyebrow js-reveal">ΣΕΛ. 02 / ΓΙΑ ΜΕΝΑ</p>
+				<p class="eyebrow js-reveal">{t.eyebrow}</p>
 				<h2
 					class="display-title js-reveal text-4xl font-light leading-tight text-bone sm:text-5xl lg:text-6xl"
 				>
-					Ο δημιουργός <span class="italic text-bronze">πίσω από</span> τα καρέ
+					{t.title}
+					<span class="italic text-bronze">{t.titleEm}</span>
+					{t.titleAfter}
 				</h2>
 			</div>
 		</div>
@@ -77,7 +50,7 @@ const tools = [
 							aria-hidden="true"></span>
 						<img
 							src={`${base}images/Poster.webp`}
-							alt="Αφίσα — Το Δέος της Ανθρωπότητας"
+							alt={t.posterAlt}
 							loading="lazy"
 							decoding="async"
 							class="aspect-[3/4] w-full object-cover"
@@ -85,7 +58,8 @@ const tools = [
 						<figcaption
 							class="py-2.5 text-center font-mono text-[0.68rem] uppercase tracking-[0.14em] text-carbon"
 						>
-							ΑΦΙΣΑ / <span class="text-bronze-dark">ΑΝΘΡΩΠΟΤΗΤΑΣ</span>
+							{t.posterCaption}
+							<span class="text-bronze-dark">{t.posterCaptionEm}</span>
 						</figcaption>
 					</div>
 				</figure>
@@ -96,32 +70,29 @@ const tools = [
 				<p
 					class="js-reveal font-mono text-[0.72rem] uppercase tracking-[0.22em] text-stone/70"
 				>
-					ΔΙΑΘΕΣΙΜΟΤΗΤΑ: ΕΤΟΙΜΟΣ ΓΙΑ ΣΥΝΕΡΓΑΣΙΕΣ
+					{t.availability}
 				</p>
 				<p class="js-reveal text-lg leading-relaxed text-stone md:text-lg">
-					Είμαι ο {identity} — καλλιτέχνης που εργάζεται στη διασταύρωση 2D και 3D animation,
-					concept art και sound design. Δουλεύω κυρίως πάνω σε προσωπικά projects με κινηματογραφικό
-					χαρακτήρα, όπως η ταινία μικρού μήκους «Το Δέος της Ανθρωπότητας».
+					{format(t.bio1, { name: t.identity })}
 				</p>
 				<p class="js-reveal text-lg leading-relaxed text-stone">
-					Αυτό το portfolio συγκεντρώνει επιλεγμένη δουλειά — το κύριο έργο μου και
-					μικρότερα projects. Πρόσθεσε εδώ μια πραγματική βιογραφία και τι σε ενδιαφέρει.
+					{t.bio2}
 				</p>
 				<div class="js-reveal border border-ash bg-carbon p-6">
-					<p class="eyebrow mb-5">ΕΡΓΑΛΕΙΑ / TOOLS</p>
+					<p class="eyebrow mb-5">{t.toolsHeading}</p>
 					<ul class="grid grid-cols-2 gap-2 sm:grid-cols-2">
 						{
-							tools.map((t) => (
+							tools.map((tool) => (
 								<li class="group flex items-center gap-3 border border-smoke bg-coal px-4 py-3 transition-colors duration-200 hover:border-bronze">
 									<img
-										src={t.logo}
-										alt={`${t.name} logo`}
+										src={tool.logo}
+										alt={`${tool.name} logo`}
 										loading="lazy"
 										decoding="async"
 										class="h-5 w-5 shrink-0 opacity-80 transition-opacity duration-200 group-hover:opacity-100"
 									/>
 									<span class="font-mono text-[0.72rem] uppercase tracking-[0.16em] text-bone">
-										{t.name}
+										{tool.name}
 									</span>
 								</li>
 							))
@@ -134,10 +105,10 @@ const tools = [
 			<div class="space-y-10 lg:col-span-2">
 				<div class="grid gap-10 md:grid-cols-2 lg:gap-20">
 					<div class="js-reveal">
-						<p class="eyebrow mb-6">ΕΚΠΑΙΔΕΥΣΗ / EDUCATION</p>
+						<p class="eyebrow mb-6">{t.educationHeading}</p>
 						<div class="border-t border-ash">
 							{
-								education.map((e) => (
+								t.education.map((e) => (
 									<div class="grid grid-cols-[auto_1fr] gap-6 border-b border-ash py-5">
 										<span class="font-mono text-xs text-bronze">{e.year}</span>
 										<div>
@@ -158,10 +129,10 @@ const tools = [
 					</div>
 
 					<div class="js-reveal">
-						<p class="eyebrow mb-6">ΕΜΠΕΙΡΙΑ / EXPERIENCE</p>
+						<p class="eyebrow mb-6">{t.experienceHeading}</p>
 						<div class="border-t border-ash">
 							{
-								experience.map((e) => (
+								t.experience.map((e) => (
 									<div class="grid grid-cols-[auto_1fr] gap-6 border-b border-ash py-5">
 										<span class="font-mono text-xs text-bronze">{e.year}</span>
 										<div>

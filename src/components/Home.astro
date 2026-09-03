@@ -1,0 +1,88 @@
+---
+import Header from './Header.astro';
+import Hero from './Hero.astro';
+import About from './About.astro';
+import Featured from './Featured.astro';
+import Frames from './Frames.astro';
+import Story from './Story.astro';
+import Vision from './Vision.astro';
+import Pipeline from './Pipeline.astro';
+import Characters from './Characters.astro';
+import Metrics from './Metrics.astro';
+import Gallery from './Gallery.astro';
+import Video from './Video.astro';
+import Footer from './Footer.astro';
+import type { Locale } from '../i18n/ui';
+
+interface Props {
+  lang: Locale;
+}
+
+const { lang } = Astro.props;
+---
+
+<Header lang={lang} />
+<main>
+  <Hero lang={lang} />
+  <About lang={lang} />
+  <Featured lang={lang} />
+  <Frames lang={lang} />
+  <Story lang={lang} />
+  <Vision lang={lang} />
+  <Pipeline lang={lang} />
+  <Characters lang={lang} />
+  <Metrics lang={lang} />
+  <Gallery lang={lang} />
+  <Video lang={lang} />
+</main>
+<Footer lang={lang} />
+
+<script>
+  import gsap from 'gsap';
+  import ScrollTrigger from 'gsap/ScrollTrigger';
+
+  gsap.registerPlugin(ScrollTrigger);
+
+  const reducedMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+
+  if (!reducedMotion) {
+    const revealGroups = gsap.utils.toArray<HTMLElement>('.js-reveal');
+    revealGroups.forEach((element) => {
+      gsap.fromTo(
+        element,
+        { autoAlpha: 0, y: 28 },
+        {
+          autoAlpha: 1,
+          y: 0,
+          duration: 0.8,
+          ease: 'power3.out',
+          scrollTrigger: {
+            trigger: element,
+            start: 'top 85%',
+            once: true,
+          },
+        }
+      );
+    });
+
+    gsap.fromTo(
+      '.hero-parallax',
+      { y: -12 },
+      {
+        y: 18,
+        ease: 'none',
+        scrollTrigger: {
+          trigger: '.hero-parallax',
+          scrub: true,
+          start: 'top top',
+          end: 'bottom top',
+        },
+      }
+    );
+  } else {
+    document.querySelectorAll<HTMLElement>('.js-reveal').forEach((el) => {
+      el.style.opacity = '1';
+      el.style.transform = 'none';
+    });
+  }
+</script>

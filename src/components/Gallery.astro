@@ -1,6 +1,13 @@
 ---
+import { format, getT, type Locale } from '../i18n/ui';
 import { getGallery } from '../lib/frames';
 
+interface Props {
+  lang: Locale;
+}
+
+const { lang } = Astro.props;
+const t = getT(lang).gallery;
 const frames = getGallery();
 
 const rotations = [
@@ -23,13 +30,12 @@ const picks = frames.map((frame, i) => ({
   <div class="container relative">
     <div class="mb-12 flex flex-wrap items-end justify-between gap-6">
       <div class="max-w-xl space-y-4">
-        <p class="eyebrow js-reveal">ΣΤΙΓΜΙΟΤΥΠΑ / ΕΠΙΛΕΓΜΕΝΑ ΚΑΡΕ</p>
+        <p class="eyebrow js-reveal">{t.eyebrow}</p>
         <h2 class="display-title js-reveal text-4xl font-light leading-tight text-bone sm:text-5xl lg:text-6xl">
-          Η δουλειά, <span class="italic text-bronze">σκορπισμένη</span> στο τραπέζι
+          {t.title} <span class="italic text-bronze">{t.titleEm}</span> {t.titleAfter}
         </h2>
         <p class="js-reveal text-lg leading-relaxed text-stone">
-          Καρέ από το τελικό cut, τοποθετημένα σαν εκτυπώσεις πάνω στο light table —
-          με τον χρόνο τους γραμμένο στο περιθώριο.
+          {t.intro}
         </p>
       </div>
     </div>
@@ -49,7 +55,7 @@ const picks = frames.map((frame, i) => ({
               )}
               <img
                 src={frame.src}
-                alt={`Στιγμιότυπο στο ${frame.timecode}`}
+                alt={format(t.alt, { timecode: frame.timecode })}
                 loading="lazy"
                 decoding="async"
                 class="aspect-video w-full object-cover"
