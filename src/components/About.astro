@@ -49,7 +49,7 @@ const tools = [
 					class="display-title js-reveal text-3xl font-light leading-tight text-bone sm:text-4xl"
 				>
 					{t.identity}
-					<span class="italic text-bronze">— {t.role}</span>
+					<span class="italic text-bronze"> - {t.role}</span>
 				</p>
 				<p class="js-reveal text-lg leading-relaxed text-stone md:text-lg">
 					{t.bio1}
@@ -57,29 +57,76 @@ const tools = [
 				<p class="js-reveal text-lg leading-relaxed text-stone">
 					{t.bio2}
 				</p>
+				<div class="js-reveal border border-ash bg-carbon p-6">
+					<p class="eyebrow mb-5">{t.toolsHeading}</p>
+					<ul class="grid grid-cols-2 gap-2 sm:grid-cols-2">
+						{
+							tools.map((tool) => (
+								<li class="group flex items-center gap-3 border border-smoke bg-coal px-4 py-3 transition-colors duration-200 hover:border-bronze">
+									<img
+										src={tool.logo}
+										alt={`${tool.name} logo`}
+										loading="lazy"
+										decoding="async"
+										class="h-5 w-5 shrink-0 opacity-80 transition-opacity duration-200 group-hover:opacity-100"
+									/>
+									<span class="font-mono text-[0.72rem] uppercase tracking-[0.16em] text-bone">
+										{tool.name}
+									</span>
+								</li>
+							))
+						}
+					</ul>
+				</div>
 			</div>
 
-			<!-- Tools -->
-			<div class="js-reveal self-end border border-ash bg-carbon p-6">
-				<p class="eyebrow mb-5">{t.toolsHeading}</p>
-				<ul class="grid grid-cols-2 gap-2 sm:grid-cols-2">
-					{
-						tools.map((tool) => (
-							<li class="group flex items-center gap-3 border border-smoke bg-coal px-4 py-3 transition-colors duration-200 hover:border-bronze">
-								<img
-									src={tool.logo}
-									alt={`${tool.name} logo`}
-									loading="lazy"
-									decoding="async"
-									class="h-5 w-5 shrink-0 opacity-80 transition-opacity duration-200 group-hover:opacity-100"
-								/>
-								<span class="font-mono text-[0.72rem] uppercase tracking-[0.16em] text-bone">
-									{tool.name}
-								</span>
-							</li>
-						))
-					}
-				</ul>
+			<!-- Portrait + Tools -->
+			<div class="space-y-8 self-start">
+				<figure
+					class="js-reveal group relative mx-auto w-full max-w-sm rotate-[1deg] transition-transform duration-500 ease-editorial hover:!rotate-0 hover:-translate-y-1.5 lg:mx-0 lg:max-w-none"
+				>
+					<div
+						class="relative bg-bone p-3 pb-0 shadow-[0_18px_50px_rgba(0,0,0,0.6)] transition-shadow duration-500 ease-editorial group-hover:shadow-[0_28px_72px_rgba(0,0,0,0.7)]"
+					>
+						<span
+							class="pointer-events-none absolute -top-2.5 left-1/2 z-10 h-5 w-16 -translate-x-1/2 rotate-[2deg] bg-[#C9A87C]/80 backdrop-blur-[1px]"
+							aria-hidden="true"></span>
+						<img
+							src={`${base}profile.webp`}
+							alt={t.profileAlt}
+							loading="lazy"
+							decoding="async"
+							class="aspect-[4/5] w-full object-cover object-[50%_32%]"
+						/>
+						<figcaption
+							class="py-2.5 text-center font-mono text-[0.68rem] uppercase tracking-[0.14em] text-carbon"
+						>
+							<!-- {t.profileCaption} -->
+						</figcaption>
+					</div>
+				</figure>
+
+				<!-- <div class="js-reveal border border-ash bg-carbon p-6">
+					<p class="eyebrow mb-5">{t.toolsHeading}</p>
+					<ul class="grid grid-cols-2 gap-2 sm:grid-cols-2">
+						{
+							tools.map((tool) => (
+								<li class="group flex items-center gap-3 border border-smoke bg-coal px-4 py-3 transition-colors duration-200 hover:border-bronze">
+									<img
+										src={tool.logo}
+										alt={`${tool.name} logo`}
+										loading="lazy"
+										decoding="async"
+										class="h-5 w-5 shrink-0 opacity-80 transition-opacity duration-200 group-hover:opacity-100"
+									/>
+									<span class="font-mono text-[0.72rem] uppercase tracking-[0.16em] text-bone">
+										{tool.name}
+									</span>
+								</li>
+							))
+						}
+					</ul>
+				</div> -->
 			</div>
 
 			<!-- Education & Experience -->

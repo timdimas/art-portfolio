@@ -18,6 +18,7 @@ interface LoopClip {
 	spanMd: string;
 	spanLg: string;
 	wide?: boolean;
+	manual?: boolean;
 }
 
 const clips: LoopClip[] = [
@@ -30,28 +31,28 @@ const clips: LoopClip[] = [
 	},
 	{
 		file: "cut 1.mp4",
-		label: "CUT 01",
+		label: "SUPERMAN CUT",
 		duration: "00:01",
 		spanMd: "md:col-span-3",
 		spanLg: "lg:col-span-6",
 	},
 	{
 		file: "cut 2.mp4",
-		label: "CUT 02",
+		label: "SUPERMAN CUT",
 		duration: "00:02",
 		spanMd: "md:col-span-2",
 		spanLg: "lg:col-span-4",
 	},
 	{
 		file: "cut 3.mp4",
-		label: "CUT 03",
+		label: "SUPERMAN CUT",
 		duration: "00:01",
 		spanMd: "md:col-span-2",
 		spanLg: "lg:col-span-4",
 	},
 	{
 		file: "cut 4.mp4",
-		label: "CUT 04",
+		label: "SUPERMAN CUT",
 		duration: "00:01",
 		spanMd: "md:col-span-2",
 		spanLg: "lg:col-span-4",
@@ -77,6 +78,7 @@ const clips: LoopClip[] = [
 		spanMd: "md:col-span-6",
 		spanLg: "lg:col-span-12",
 		wide: true,
+		manual: true,
 	},
 ];
 ---
@@ -110,35 +112,36 @@ const clips: LoopClip[] = [
 					<span class="sprocket-h" aria-hidden="true" />
 					<div class="relative overflow-hidden bg-carbon">
 						<video
-							class={`w-full bg-carbon object-cover transition-transform duration-700 ease-editorial group-hover:scale-[1.03] ${clip.wide ? "aspect-video" : "aspect-[14/9]"}`}
+							class={`w-full bg-carbon object-cover ${clip.manual ? "" : "transition-transform duration-700 ease-editorial group-hover:scale-[1.03]"} ${clip.wide ? "aspect-video" : "aspect-[14/9]"}`}
 							src={`${base}work/${enc(clip.file)}`}
 							poster={`${base}work/posters/${enc(clip.file.replace(/\.mp4$/, ".webp"))}`}
-							muted
-							loop
+							muted={!clip.manual || undefined}
+							loop={!clip.manual || undefined}
 							playsinline
-							preload="none"
-							disablepictureinpicture
-							data-loop
+							preload={clip.manual ? "metadata" : "none"}
+							controls={clip.manual || undefined}
+							disablepictureinpicture={!clip.manual || undefined}
+							data-loop={!clip.manual || undefined}
 						/>
-						<button
-							type="button"
-							class="absolute inset-0 z-10 cursor-pointer transition-shadow duration-200 ring-bronze/70 group-hover:shadow-[inset_0_0_0_1px_rgba(183,146,93,0.7)] focus-visible:shadow-[inset_0_0_0_2px_rgba(183,146,93,1)]"
-							data-loop-open
-							data-src={`${base}work/${enc(clip.file)}`}
-							data-label={clip.label}
-							data-duration={clip.duration}
-							aria-label={format(t.loopsOpen, { label: clip.label })}
-						/>
-						<span
-							class="pointer-events-none absolute inset-x-0 bottom-0 z-0 translate-y-2 bg-gradient-to-t from-carbon/85 to-transparent px-4 pb-3 pt-10 text-right font-mono text-[0.62rem] uppercase tracking-[0.22em] text-bone opacity-0 transition-all duration-300 ease-editorial group-hover:translate-y-0 group-hover:opacity-100"
-						>
-							{t.loopsHint}
-						</span>
+						{!clip.manual && (
+							<button
+								type="button"
+								class="absolute inset-0 z-10 cursor-pointer transition-shadow duration-200 ring-bronze/70 group-hover:shadow-[inset_0_0_0_1px_rgba(183,146,93,0.7)] focus-visible:shadow-[inset_0_0_0_2px_rgba(183,146,93,1)]"
+								data-loop-open
+								data-src={`${base}work/${enc(clip.file)}`}
+								data-label={clip.label}
+								data-duration={clip.duration}
+								aria-label={format(t.loopsOpen, { label: clip.label })}
+							/>
+						)}
+						{!clip.manual && (
+							<span class="pointer-events-none absolute inset-x-0 bottom-0 z-0 translate-y-2 bg-gradient-to-t from-carbon/85 to-transparent px-4 pb-3 pt-10 text-right font-mono text-[0.62rem] uppercase tracking-[0.22em] text-bone opacity-0 transition-all duration-300 ease-editorial group-hover:translate-y-0 group-hover:opacity-100">
+								{t.loopsHint}
+							</span>
+						)}
 					</div>
 					<span class="sprocket-h" aria-hidden="true" />
-					<figcaption
-						class="flex items-center justify-between gap-3 border-t border-carbon/80 px-4 py-3 font-mono text-[0.66rem] uppercase tracking-[0.18em] text-stone transition-colors duration-200 group-hover:text-bone"
-					>
+					<figcaption class="flex items-center justify-between gap-3 border-t border-carbon/80 px-4 py-3 font-mono text-[0.66rem] uppercase tracking-[0.18em] text-stone transition-colors duration-200 group-hover:text-bone">
 						<span class="truncate">{clip.label}</span>
 						<span class="shrink-0 text-bronze">{clip.duration}</span>
 					</figcaption>
@@ -168,20 +171,20 @@ const clips: LoopClip[] = [
 				d="M6 6l12 12M18 6L6 18"
 				stroke="currentColor"
 				stroke-width="2"
-				stroke-linecap="round"
-			></path>
+				stroke-linecap="round"></path>
 		</svg>
 	</button>
 	<div class="flex h-full items-center justify-center overflow-y-auto p-4 md:p-10">
-		<figure class="w-full max-w-5xl border border-ash bg-carbon shadow-[0_40px_120px_rgba(0,0,0,0.75)]">
+		<figure
+			class="w-full max-w-5xl border border-ash bg-carbon shadow-[0_40px_120px_rgba(0,0,0,0.75)]"
+		>
 			<span class="sprocket-h" aria-hidden="true"></span>
 			<video
 				id="loop-lightbox-video"
 				class="mx-auto max-h-[72vh] w-full bg-carbon object-contain"
 				controls
 				playsinline
-				preload="auto"
-			></video>
+				preload="auto"></video>
 			<span class="sprocket-h" aria-hidden="true"></span>
 			<figcaption
 				class="flex items-center justify-between gap-4 border-t border-ash px-5 py-4 font-mono text-[0.72rem] uppercase tracking-[0.22em] text-stone"
@@ -272,7 +275,11 @@ const clips: LoopClip[] = [
 
 	document.querySelectorAll<HTMLButtonElement>("[data-loop-open]").forEach((button) => {
 		button.addEventListener("click", () => {
-			openLightbox(button.dataset.src ?? "", button.dataset.label ?? "", button.dataset.duration ?? "");
+			openLightbox(
+				button.dataset.src ?? "",
+				button.dataset.label ?? "",
+				button.dataset.duration ?? "",
+			);
 		});
 	});
 

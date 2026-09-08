@@ -33,8 +33,51 @@ const base = import.meta.env.BASE_URL + "/";
 				</p>
 			</div>
 			<p class="js-reveal font-mono text-[0.78rem] uppercase tracking-[0.22em] text-stone">
-				TRAILER + FULL FILM
+				POSTER + TRAILER + FULL FILM
 			</p>
+		</div>
+
+		<!-- Official one-sheet -->
+		<div class="js-reveal mb-10 grid gap-8 lg:grid-cols-12 lg:gap-6 xl:gap-10">
+			<figure
+				class="group relative w-full max-w-xs -rotate-[1.2deg] transition-transform duration-500 ease-editorial hover:!rotate-0 hover:-translate-y-2 sm:max-w-sm lg:col-span-4 lg:max-w-none"
+			>
+				<div
+					class="relative bg-bone p-3 pb-0 shadow-[0_18px_50px_rgba(0,0,0,0.6)] transition-shadow duration-500 ease-editorial group-hover:shadow-[0_28px_72px_rgba(0,0,0,0.7)]"
+				>
+					<span
+						class="pointer-events-none absolute -top-2.5 left-1/2 z-10 h-5 w-16 -translate-x-1/2 rotate-[-2deg] bg-[#C9A87C]/80 backdrop-blur-[1px]"
+						aria-hidden="true"></span>
+					<img
+						src={`${base}images/Poster.webp`}
+						alt={t.posterAlt}
+						loading="lazy"
+						decoding="async"
+						class="aspect-[3/4] w-full object-cover"
+					/>
+					<figcaption
+						class="py-2.5 text-center font-mono text-[0.68rem] uppercase tracking-[0.14em] text-carbon"
+					>
+						{t.posterCaption}
+						<span class="text-bronze-dark">{t.posterCaptionEm}</span>
+					</figcaption>
+				</div>
+			</figure>
+			<div class="flex flex-col justify-center gap-6 lg:col-span-8 lg:py-2">
+				<h3
+					class="display-title text-4xl font-light leading-tight text-bone sm:text-5xl lg:text-6xl xl:text-7xl"
+				>
+					{t.posterTitle}
+					<span class="italic text-bronze">{t.posterTitleEm}</span>
+					{t.posterTitleAfter}
+				</h3>
+				<div
+					class="space-y-2 font-mono text-[0.75rem] uppercase leading-relaxed tracking-[0.22em] text-stone"
+				>
+					<p class="text-bronze">{t.posterMeta}</p>
+					<p>{t.posterFormat}</p>
+				</div>
+			</div>
 		</div>
 
 		<div class="grid gap-8 lg:grid-cols-2 lg:gap-px lg:border lg:border-ash lg:bg-ash">
