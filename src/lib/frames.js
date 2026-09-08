@@ -31,9 +31,7 @@ export function getFrames() {
 }
 
 export function getGallery() {
-	const files = fs
-		.readdirSync(GALLERY_DIR)
-		.filter((f) => /\.webp$/.test(f));
+	const files = fs.readdirSync(GALLERY_DIR).filter((f) => /\.webp$/.test(f));
 	files.sort();
 
 	return files.map((file, index) => {

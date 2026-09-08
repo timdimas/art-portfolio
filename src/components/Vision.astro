@@ -1,78 +1,78 @@
 ---
-import { getT, type Locale } from '../i18n/ui';
+import { getT, type Locale } from "../i18n/ui";
 
 interface Props {
-  lang: Locale;
+	lang: Locale;
 }
 
 const { lang } = Astro.props;
 const t = getT(lang).vision;
-const base = import.meta.env.BASE_URL + '/';
-const studySrcs = ['gif.26.mp4', 'gif.27.mp4', 'gif.32.mp4'];
+const base = import.meta.env.BASE_URL;
+const studySrcs = ["gif.26.mp4", "gif.27.mp4", "gif.32.mp4"];
 const studies = t.studies.map((study, i) => ({ ...study, src: `${base}gifs/${studySrcs[i]}` }));
 ---
 
 <section class="section-shell border-t border-ash bg-carbon" id="vision">
-  <div class="container">
-    <div class="mb-10 max-w-xl space-y-4">
-      <p class="eyebrow js-reveal">{t.eyebrow}</p>
-      <h2 class="display-title js-reveal text-4xl font-light leading-tight text-bone sm:text-5xl lg:text-6xl">
-        {t.title} <span class="italic text-bronze">{t.titleEm}</span> {t.titleAfter}
-      </h2>
-      <p class="js-reveal text-lg leading-relaxed text-stone">
-        {t.intro}
-      </p>
-    </div>
+	<div class="container">
+		<div class="mb-10 max-w-xl space-y-4">
+			<p class="eyebrow js-reveal">{t.eyebrow}</p>
+			<h2
+				class="display-title js-reveal text-4xl font-light leading-tight text-bone sm:text-5xl lg:text-6xl"
+			>
+				{t.title}
+				<span class="italic text-bronze">{t.titleEm}</span>
+				{t.titleAfter}
+			</h2>
+			<p class="js-reveal text-lg leading-relaxed text-stone">
+				{t.intro}
+			</p>
+		</div>
 
-    <div class="grid gap-px border border-ash bg-ash md:grid-cols-3">
-      {
-        t.influences.map((inf) => (
-          <article class="js-reveal group relative bg-carbon p-8 md:p-10">
-            <span class="display-title text-4xl font-light italic text-bronze/60 transition-colors duration-300 group-hover:text-bronze">
-              {inf.id}
-            </span>
-            <h3 class="mt-8 font-mono text-[0.78rem] uppercase tracking-[0.22em] text-bone">
-              {inf.name}
-            </h3>
-            <p class="mt-3 display-title text-2xl font-light text-bone">
-              {inf.title}
-            </p>
-            <p class="mt-4 text-lg leading-relaxed text-stone">
-              {inf.text}
-            </p>
-            <span class="mt-8 block h-px w-10 bg-bronze/50 transition-all duration-300 group-hover:w-full"></span>
-          </article>
-        ))
-      }
-    </div>
+		<div class="grid gap-px border border-ash bg-ash md:grid-cols-3">
+			{
+				t.influences.map((inf) => (
+					<article class="js-reveal group relative bg-carbon p-8 md:p-10">
+						<span class="display-title text-4xl font-light italic text-bronze/60 transition-colors duration-300 group-hover:text-bronze">
+							{inf.id}
+						</span>
+						<h3 class="mt-8 font-mono text-[0.78rem] uppercase tracking-[0.22em] text-bone">
+							{inf.name}
+						</h3>
+						<p class="mt-3 display-title text-2xl font-light text-bone">{inf.title}</p>
+						<p class="mt-4 text-lg leading-relaxed text-stone">{inf.text}</p>
+						<span class="mt-8 block h-px w-10 bg-bronze/50 transition-all duration-300 group-hover:w-full" />
+					</article>
+				))
+			}
+		</div>
 
-    <!-- Motion studies — dailies on the light table -->
-    <div class="mt-px grid gap-px border border-ash bg-ash md:grid-cols-3">
-      {
-        studies.map((study) => (
-          <figure class="js-reveal group relative bg-carbon">
-            <div class="relative bg-bone/95">
-              <video
-                src={study.src}
-                autoplay
-                muted
-                loop
-                playsinline
-                preload="metadata"
-                aria-label={study.label}
-                class="aspect-video w-full object-cover"
-              ></video>
-              <span class="pointer-events-none absolute left-0 top-0 bg-carbon/80 px-3 py-1.5 font-mono text-[0.62rem] uppercase tracking-[0.22em] text-bronze">
-                LOOP
-              </span>
-            </div>
-            <figcaption class="flex items-center justify-between gap-4 border-t border-ash px-5 py-4 font-mono text-[0.72rem] uppercase tracking-[0.22em] text-stone">
-              <span>{study.label}</span>
-              <span class="text-bone/70">{study.note}</span>
-            </figcaption>
-          </figure>
-        ))
-      }
-    </div>
-  </div>
+		<!-- Motion studies — dailies on the light table -->
+		<div class="mt-px grid gap-px border border-ash bg-ash md:grid-cols-3">
+			{
+				studies.map((study) => (
+					<figure class="js-reveal group relative bg-carbon">
+						<div class="relative bg-bone/95">
+							<video
+								src={study.src}
+								autoplay
+								muted
+								loop
+								playsinline
+								preload="metadata"
+								aria-label={study.label}
+								class="aspect-video w-full object-cover"
+							/>
+							<span class="pointer-events-none absolute left-0 top-0 bg-carbon/80 px-3 py-1.5 font-mono text-[0.62rem] uppercase tracking-[0.22em] text-bronze">
+								LOOP
+							</span>
+						</div>
+						<figcaption class="flex items-center justify-between gap-4 border-t border-ash px-5 py-4 font-mono text-[0.72rem] uppercase tracking-[0.22em] text-stone">
+							<span>{study.label}</span>
+							<span class="text-bone/70">{study.note}</span>
+						</figcaption>
+					</figure>
+				))
+			}
+		</div>
+	</div>
 </section>

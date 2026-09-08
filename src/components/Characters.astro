@@ -1,103 +1,116 @@
 ---
-import { getT, type Locale } from '../i18n/ui';
+import { getT, type Locale } from "../i18n/ui";
 
 interface Props {
-  lang: Locale;
+	lang: Locale;
 }
 
 const { lang } = Astro.props;
 const t = getT(lang).characters;
-const base = import.meta.env.BASE_URL + '/';
-const duelImgs = ['Utio.jpg', 'Kembrak.jpg'];
-const duel = t.duel.map((character, i) => ({ ...character, img: `${base}pipeline/${duelImgs[i]}` }));
-const fightSrcs = ['gif.11.mp4', 'gif.12.mp4', 'gif.37.mp4', 'gif.21.mp4'];
+const base = import.meta.env.BASE_URL;
+const duelImgs = ["Utio.jpg", "Kembrak.jpg"];
+const duel = t.duel.map((character, i) => ({
+	...character,
+	img: `${base}pipeline/${duelImgs[i]}`,
+}));
+const fightSrcs = ["gif.11.mp4", "gif.12.mp4", "gif.37.mp4", "gif.21.mp4"];
 const fight = t.fight.map((seq, i) => ({ ...seq, src: `${base}gifs/${fightSrcs[i]}` }));
 ---
 
-<section class="section-shell relative overflow-hidden border-t border-ash bg-carbon" id="characters">
-  <div class="absolute inset-0 bg-[radial-gradient(ellipse_at_50%_10%,#1E1A17_0%,#12100E_65%)]"></div>
+<section
+	class="section-shell relative overflow-hidden border-t border-ash bg-carbon"
+	id="characters"
+>
+	<div class="absolute inset-0 bg-[radial-gradient(ellipse_at_50%_10%,#1E1A17_0%,#12100E_65%)]">
+	</div>
 
-  <div class="container relative">
-    <div class="mb-12 flex flex-wrap items-end justify-between gap-6">
-      <div class="max-w-xl space-y-4">
-        <p class="eyebrow js-reveal">{t.eyebrow}</p>
-        <h2 class="display-title js-reveal text-4xl font-light leading-tight text-bone sm:text-5xl lg:text-6xl">
-          {t.title} <span class="italic text-bronze">{t.titleEm}</span> {t.titleAfter}
-        </h2>
-        <p class="js-reveal text-lg leading-relaxed text-stone">
-          {t.intro}
-        </p>
-      </div>
-      <p class="js-reveal font-mono text-[0.78rem] uppercase tracking-[0.22em] text-stone">
-        UTIO VS KEMBRAK
-      </p>
-    </div>
+	<div class="container relative">
+		<div class="mb-12 flex flex-wrap items-end justify-between gap-6">
+			<div class="max-w-xl space-y-4">
+				<p class="eyebrow js-reveal">{t.eyebrow}</p>
+				<h2
+					class="display-title js-reveal text-4xl font-light leading-tight text-bone sm:text-5xl lg:text-6xl"
+				>
+					{t.title}
+					<span class="italic text-bronze">{t.titleEm}</span>
+					{t.titleAfter}
+				</h2>
+				<p class="js-reveal text-lg leading-relaxed text-stone">
+					{t.intro}
+				</p>
+			</div>
+			<p class="js-reveal font-mono text-[0.78rem] uppercase tracking-[0.22em] text-stone">
+				UTIO VS KEMBRAK
+			</p>
+		</div>
 
-    <!-- Showdown -->
-    <div class="grid gap-px border border-ash bg-ash md:grid-cols-2">
-      {
-        duel.map((c) => (
-          <article class="js-reveal group relative bg-coal">
-            <div class="relative overflow-hidden bg-bone/95">
-              <img
-                src={c.img}
-                alt={`${c.name} — ${c.role}`}
-                loading="lazy"
-                decoding="async"
-                class="aspect-[4/3] w-full object-cover transition-transform duration-700 ease-editorial group-hover:scale-[1.03]"
-              />
-              <span
-                class="pointer-events-none absolute top-0 z-10 bg-carbon/85 px-3 py-1.5 font-mono text-[0.62rem] uppercase tracking-[0.22em] text-bronze"
-              >
-                {t.badge}
-              </span>
-            </div>
-            <div class="p-8 md:p-10">
-              <div class="flex items-baseline justify-between gap-4">
-                <h3 class="display-title text-4xl font-light text-bone">{c.name}</h3>
-                <span class="font-mono text-[0.72rem] uppercase tracking-[0.22em] text-bronze">{c.role}</span>
-              </div>
-              <p class="mt-4 text-lg leading-relaxed text-stone">{c.text}</p>
-            </div>
-          </article>
-        ))
-      }
-    </div>
+		<!-- Showdown -->
+		<div class="grid gap-px border border-ash bg-ash md:grid-cols-2">
+			{
+				duel.map((c) => (
+					<article class="js-reveal group relative bg-coal">
+						<div class="relative overflow-hidden bg-bone/95">
+							<img
+								src={c.img}
+								alt={`${c.name} — ${c.role}`}
+								loading="lazy"
+								decoding="async"
+								class="aspect-[4/3] w-full object-cover transition-transform duration-700 ease-editorial group-hover:scale-[1.03]"
+							/>
+							<span class="pointer-events-none absolute top-0 z-10 bg-carbon/85 px-3 py-1.5 font-mono text-[0.62rem] uppercase tracking-[0.22em] text-bronze">
+								{t.badge}
+							</span>
+						</div>
+						<div class="p-8 md:p-10">
+							<div class="flex items-baseline justify-between gap-4">
+								<h3 class="display-title text-4xl font-light text-bone">
+									{c.name}
+								</h3>
+								<span class="font-mono text-[0.72rem] uppercase tracking-[0.22em] text-bronze">
+									{c.role}
+								</span>
+							</div>
+							<p class="mt-4 text-lg leading-relaxed text-stone">{c.text}</p>
+						</div>
+					</article>
+				))
+			}
+		</div>
 
-    <!-- The fight in motion -->
-    <div class="mt-px border border-ash bg-carbon">
-      <div class="flex items-center justify-between gap-4 border-b border-ash px-5 py-4">
-        <p class="eyebrow">{t.fightHeading}</p>
-        <p class="font-mono text-[0.72rem] uppercase tracking-[0.22em] text-stone">
-          {t.fightCount}
-        </p>
-      </div>
-      <div class="grid gap-px bg-ash sm:grid-cols-2 lg:grid-cols-4">
-        {
-          fight.map((f) => (
-            <figure class="group js-reveal relative bg-coal">
-              <div class="relative bg-bone/95">
-                <video
-                  src={f.src}
-                  autoplay
-                  muted
-                  loop
-                  playsinline
-                  preload="metadata"
-                  aria-label={f.label}
-                  class="aspect-video w-full object-cover"
-                ></video>
-                <span class="pointer-events-none absolute left-0 top-0 bg-carbon/80 px-2.5 py-1 font-mono text-[0.62rem] uppercase tracking-[0.22em] text-bronze">
-                  LOOP
-                </span>
-              </div>
-              <figcaption class="border-t border-ash px-4 py-3 font-mono text-[0.68rem] uppercase tracking-[0.18em] text-stone">
-                {f.label}
-              </figcaption>
-            </figure>
-          ))
-        }
-      </div>
-    </div>
-  </div>
+		<!-- The fight in motion -->
+		<div class="mt-px border border-ash bg-carbon">
+			<div class="flex items-center justify-between gap-4 border-b border-ash px-5 py-4">
+				<p class="eyebrow">{t.fightHeading}</p>
+				<p class="font-mono text-[0.72rem] uppercase tracking-[0.22em] text-stone">
+					{t.fightCount}
+				</p>
+			</div>
+			<div class="grid gap-px bg-ash sm:grid-cols-2 lg:grid-cols-4">
+				{
+					fight.map((f) => (
+						<figure class="group js-reveal relative bg-coal">
+							<div class="relative bg-bone/95">
+								<video
+									src={f.src}
+									autoplay
+									muted
+									loop
+									playsinline
+									preload="metadata"
+									aria-label={f.label}
+									class="aspect-video w-full object-cover"
+								/>
+								<span class="pointer-events-none absolute left-0 top-0 bg-carbon/80 px-2.5 py-1 font-mono text-[0.62rem] uppercase tracking-[0.22em] text-bronze">
+									LOOP
+								</span>
+							</div>
+							<figcaption class="border-t border-ash px-4 py-3 font-mono text-[0.68rem] uppercase tracking-[0.18em] text-stone">
+								{f.label}
+							</figcaption>
+						</figure>
+					))
+				}
+			</div>
+		</div>
+	</div>
 </section>

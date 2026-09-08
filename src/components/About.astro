@@ -7,7 +7,7 @@ interface Props {
 
 const { lang } = Astro.props;
 const t = getT(lang).about;
-const base = import.meta.env.BASE_URL + "/";
+const base = import.meta.env.BASE_URL;
 
 const tools = [
 	{ name: "Clip Studio Paint", logo: `${base}tools/clip-studio.png` },

@@ -7,7 +7,7 @@ interface Props {
 
 const { lang } = Astro.props;
 const t = getT(lang).video;
-const base = import.meta.env.BASE_URL + "/";
+const base = import.meta.env.BASE_URL;
 
 const enc = (name: string) => name.replaceAll(" ", "%20");
 
