@@ -15,6 +15,5 @@ export default defineConfig({
 	server: {
 		host: true,
 	},
-	site: "https://timdimas.github.io",
-	base: "/art-portfolio",
+	base: "/",
 });
