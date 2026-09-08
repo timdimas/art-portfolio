@@ -11,7 +11,7 @@ function parse(file) {
 	return { date: match?.[1], raw, timecode, ext: match?.[3] };
 }
 
-const BASE = (import.meta.env.BASE_URL ?? "") + "/";
+const BASE = import.meta.env.BASE_URL ?? "";
 
 export function getFrames() {
 	const files = fs
