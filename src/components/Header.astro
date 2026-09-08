@@ -11,19 +11,19 @@ const t = getT(lang).header;
 ---
 
 <header class="fixed inset-x-0 top-0 z-40 border-b border-ash/60 bg-carbon/85 backdrop-blur-md">
-	<div class="container flex items-center justify-between gap-6 py-3">
+	<div class="container flex items-center justify-between gap-4 py-3 lg:gap-6">
 		<a
 			href="#top"
-			class="group flex min-w-0 max-w-[45vw] flex-1 items-center gap-3 truncate font-mono text-lg uppercase tracking-[0.22em] text-bone sm:max-w-none sm:flex-none"
+			class="group min-w-0 flex-1 truncate font-mono text-[0.72rem] uppercase tracking-[0.03em] text-bone transition-colors duration-200 hover:text-bronze sm:flex-none sm:text-base sm:tracking-[0.12em] lg:text-lg lg:tracking-[0.22em]"
 		>
 			<!-- <span
 				class="inline-block h-2.5 w-2.5 rounded-full bg-bronze transition-transform duration-200 group-hover:scale-125"
 			></span> -->
 			{t.name}
 		</a>
-		<div class="flex items-center gap-6">
+		<div class="flex shrink-0 items-center gap-4 lg:gap-6">
 			<nav
-				class="hidden items-center gap-8 font-mono text-[0.8rem] uppercase tracking-[0.22em] text-stone sm:flex"
+				class="hidden items-center gap-4 font-mono text-[0.72rem] uppercase tracking-[0.16em] text-stone md:flex lg:gap-8 lg:text-[0.8rem] lg:tracking-[0.22em]"
 				aria-label={t.navLabel}
 			>
 				<a class="transition-colors duration-200 hover:text-bronze" href="#about" data-nav-link
@@ -41,7 +41,7 @@ const t = getT(lang).header;
 			</nav>
 			<button
 				type="button"
-				class="grid h-10 w-10 place-items-center border border-ash text-stone transition-colors hover:border-bronze hover:text-bronze sm:hidden"
+				class="grid h-10 w-10 place-items-center border border-ash text-stone transition-colors hover:border-bronze hover:text-bronze md:hidden"
 				aria-label={t.navLabel}
 				aria-controls="mobile-navigation"
 				aria-expanded="false"
@@ -56,7 +56,7 @@ const t = getT(lang).header;
 	</div>
 	<nav
 		id="mobile-navigation"
-		class="hidden border-t border-ash/60 bg-carbon px-5 py-4 sm:hidden"
+		class="hidden border-t border-ash/60 bg-carbon px-5 py-4 md:hidden"
 		aria-label={t.navLabel}
 		data-mobile-menu
 	>
