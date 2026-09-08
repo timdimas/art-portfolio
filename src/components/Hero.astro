@@ -7,7 +7,7 @@ interface Props {
 
 const { lang } = Astro.props;
 const t = getT(lang).hero;
-const base = import.meta.env.BASE_URL + "/";
+const base = import.meta.env.BASE_URL;
 ---
 
 <section class="relative flex min-h-screen items-end overflow-hidden bg-carbon" id="top">
