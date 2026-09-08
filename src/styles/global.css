@@ -165,6 +165,21 @@ html.js .js-reveal {
 	width: 0.9rem;
 }
 
+/* Horizontal sprocket band (filmstrip frames) */
+.sprocket-h {
+	display: block;
+	height: 0.8rem;
+	background-color: var(--color-ash);
+	background-image: radial-gradient(
+		circle at 50% 50%,
+		var(--color-carbon) 0 2.8px,
+		transparent 3.2px
+	);
+	background-size: 20px 100%;
+	background-repeat: repeat-x;
+	background-position: center;
+}
+
 @media (prefers-reduced-motion: reduce) {
 	.grain::after {
 		animation: none;

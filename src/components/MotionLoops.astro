@@ -1,0 +1,288 @@
+---
+import { format, getT, type Locale } from "../i18n/ui";
+
+interface Props {
+	lang: Locale;
+}
+
+const { lang } = Astro.props;
+const t = getT(lang).video;
+const base = import.meta.env.BASE_URL + "/";
+
+const enc = (name: string) => name.replaceAll(" ", "%20");
+
+interface LoopClip {
+	file: string;
+	label: string;
+	duration: string;
+	spanMd: string;
+	spanLg: string;
+	wide?: boolean;
+}
+
+const clips: LoopClip[] = [
+	{
+		file: "batman clip 1.1.mp4",
+		label: "BATMAN / STUDY",
+		duration: "00:03",
+		spanMd: "md:col-span-3",
+		spanLg: "lg:col-span-6",
+	},
+	{
+		file: "cut 1.mp4",
+		label: "CUT 01",
+		duration: "00:01",
+		spanMd: "md:col-span-3",
+		spanLg: "lg:col-span-6",
+	},
+	{
+		file: "cut 2.mp4",
+		label: "CUT 02",
+		duration: "00:02",
+		spanMd: "md:col-span-2",
+		spanLg: "lg:col-span-4",
+	},
+	{
+		file: "cut 3.mp4",
+		label: "CUT 03",
+		duration: "00:01",
+		spanMd: "md:col-span-2",
+		spanLg: "lg:col-span-4",
+	},
+	{
+		file: "cut 4.mp4",
+		label: "CUT 04",
+		duration: "00:01",
+		spanMd: "md:col-span-2",
+		spanLg: "lg:col-span-4",
+	},
+	{
+		file: "optimus prime.mp4",
+		label: "OPTIMUS PRIME",
+		duration: "00:02",
+		spanMd: "md:col-span-3",
+		spanLg: "lg:col-span-6",
+	},
+	{
+		file: "optimus prime swadows.mp4",
+		label: "OPTIMUS PRIME / SHADOWS",
+		duration: "00:02",
+		spanMd: "md:col-span-3",
+		spanLg: "lg:col-span-6",
+	},
+	{
+		file: "reel superman.mp4",
+		label: "SHOWREEL / SUPERMAN",
+		duration: "00:25",
+		spanMd: "md:col-span-6",
+		spanLg: "lg:col-span-12",
+		wide: true,
+	},
+];
+---
+
+<div class="mt-16 border-t border-ash pt-10 lg:mt-24 lg:pt-14">
+	<div class="mb-10 flex flex-wrap items-end justify-between gap-6">
+		<div class="max-w-xl space-y-4">
+			<p class="eyebrow js-reveal">{t.loopsEyebrow}</p>
+			<h3
+				class="display-title js-reveal text-3xl font-light leading-tight text-bone sm:text-4xl"
+			>
+				{t.loopsTitle}
+				<span class="italic text-bronze">{t.loopsTitleEm}</span>
+				{t.loopsTitleAfter}
+			</h3>
+			<p class="js-reveal text-base leading-relaxed text-stone">
+				{t.loopsIntro}
+			</p>
+		</div>
+		<p class="js-reveal font-mono text-[0.78rem] uppercase tracking-[0.22em] text-stone">
+			{t.loopsMeta}
+		</p>
+	</div>
+
+	<div class="grid grid-cols-1 gap-2 md:grid-cols-6 lg:grid-cols-12">
+		{
+			clips.map((clip) => (
+				<figure
+					class={`js-reveal group relative flex flex-col bg-ash ${clip.spanMd} ${clip.spanLg}`}
+				>
+					<span class="sprocket-h" aria-hidden="true" />
+					<div class="relative overflow-hidden bg-carbon">
+						<video
+							class={`w-full bg-carbon object-cover transition-transform duration-700 ease-editorial group-hover:scale-[1.03] ${clip.wide ? "aspect-video" : "aspect-[14/9]"}`}
+							src={`${base}work/${enc(clip.file)}`}
+							poster={`${base}work/posters/${enc(clip.file.replace(/\.mp4$/, ".webp"))}`}
+							muted
+							loop
+							playsinline
+							preload="none"
+							disablepictureinpicture
+							data-loop
+						/>
+						<button
+							type="button"
+							class="absolute inset-0 z-10 cursor-pointer transition-shadow duration-200 ring-bronze/70 group-hover:shadow-[inset_0_0_0_1px_rgba(183,146,93,0.7)] focus-visible:shadow-[inset_0_0_0_2px_rgba(183,146,93,1)]"
+							data-loop-open
+							data-src={`${base}work/${enc(clip.file)}`}
+							data-label={clip.label}
+							data-duration={clip.duration}
+							aria-label={format(t.loopsOpen, { label: clip.label })}
+						/>
+						<span
+							class="pointer-events-none absolute inset-x-0 bottom-0 z-0 translate-y-2 bg-gradient-to-t from-carbon/85 to-transparent px-4 pb-3 pt-10 text-right font-mono text-[0.62rem] uppercase tracking-[0.22em] text-bone opacity-0 transition-all duration-300 ease-editorial group-hover:translate-y-0 group-hover:opacity-100"
+						>
+							{t.loopsHint}
+						</span>
+					</div>
+					<span class="sprocket-h" aria-hidden="true" />
+					<figcaption
+						class="flex items-center justify-between gap-3 border-t border-carbon/80 px-4 py-3 font-mono text-[0.66rem] uppercase tracking-[0.18em] text-stone transition-colors duration-200 group-hover:text-bone"
+					>
+						<span class="truncate">{clip.label}</span>
+						<span class="shrink-0 text-bronze">{clip.duration}</span>
+					</figcaption>
+				</figure>
+			))
+		}
+	</div>
+</div>
+
+<div
+	id="loop-lightbox"
+	class="pointer-events-none fixed inset-0 z-[100] bg-carbon/95 opacity-0 backdrop-blur-sm transition-opacity duration-200"
+	role="dialog"
+	aria-modal="true"
+	aria-label={t.loopsDialogLabel}
+	aria-hidden="true"
+	data-open="false"
+>
+	<button
+		type="button"
+		class="absolute right-4 top-4 z-10 grid h-11 w-11 place-items-center rounded-full border border-bone/30 bg-carbon/70 text-bone transition-colors duration-200 hover:border-bronze hover:text-bronze md:right-6 md:top-6"
+		data-lb-close
+		aria-label={t.loopsClose}
+	>
+		<svg class="h-4 w-4" viewBox="0 0 24 24" fill="none" aria-hidden="true">
+			<path
+				d="M6 6l12 12M18 6L6 18"
+				stroke="currentColor"
+				stroke-width="2"
+				stroke-linecap="round"
+			></path>
+		</svg>
+	</button>
+	<div class="flex h-full items-center justify-center overflow-y-auto p-4 md:p-10">
+		<figure class="w-full max-w-5xl border border-ash bg-carbon shadow-[0_40px_120px_rgba(0,0,0,0.75)]">
+			<span class="sprocket-h" aria-hidden="true"></span>
+			<video
+				id="loop-lightbox-video"
+				class="mx-auto max-h-[72vh] w-full bg-carbon object-contain"
+				controls
+				playsinline
+				preload="auto"
+			></video>
+			<span class="sprocket-h" aria-hidden="true"></span>
+			<figcaption
+				class="flex items-center justify-between gap-4 border-t border-ash px-5 py-4 font-mono text-[0.72rem] uppercase tracking-[0.22em] text-stone"
+			>
+				<span id="loop-lightbox-title" class="truncate text-bone"></span>
+				<span id="loop-lightbox-duration" class="shrink-0 text-bronze"></span>
+			</figcaption>
+		</figure>
+	</div>
+</div>
+
+<script>
+	const lightbox = document.getElementById("loop-lightbox");
+	const lbVideo = document.getElementById("loop-lightbox-video") as HTMLVideoElement | null;
+	const lbTitle = document.getElementById("loop-lightbox-title");
+	const lbDuration = document.getElementById("loop-lightbox-duration");
+
+	const loops = Array.from(document.querySelectorAll<HTMLVideoElement>("video[data-loop]"));
+	const reducedMotion = window.matchMedia("(prefers-reduced-motion: reduce)").matches;
+	const visibleLoops = new Set<HTMLVideoElement>();
+	let lastFocused: HTMLElement | null = null;
+
+	const lightboxIsOpen = () => lightbox?.dataset.open === "true";
+
+	if (loops.length > 0) {
+		const observer = new IntersectionObserver(
+			(entries) => {
+				for (const entry of entries) {
+					const video = entry.target as HTMLVideoElement;
+					if (entry.isIntersecting) {
+						visibleLoops.add(video);
+						if (!reducedMotion && !lightboxIsOpen() && video.paused) {
+							video.play().catch(() => {});
+						}
+					} else {
+						visibleLoops.delete(video);
+						video.pause();
+					}
+				}
+			},
+			{ threshold: 0.25 },
+		);
+		loops.forEach((video) => observer.observe(video));
+
+		document.addEventListener("visibilitychange", () => {
+			if (document.hidden) {
+				loops.forEach((video) => video.pause());
+			} else if (!lightboxIsOpen()) {
+				if (!reducedMotion) {
+					visibleLoops.forEach((video) => video.play().catch(() => {}));
+				}
+			}
+		});
+	}
+
+	const openLightbox = (src: string, label: string, duration: string) => {
+		if (!lightbox || !lbVideo) return;
+		lastFocused = document.activeElement as HTMLElement | null;
+		lightbox.dataset.open = "true";
+		lightbox.setAttribute("aria-hidden", "false");
+		lightbox.classList.remove("pointer-events-none", "opacity-0");
+		lightbox.classList.add("pointer-events-auto", "opacity-100");
+		if (lbTitle) lbTitle.textContent = label;
+		if (lbDuration) lbDuration.textContent = duration;
+		loops.forEach((video) => video.pause());
+		document.documentElement.style.overflow = "hidden";
+		lbVideo.src = src;
+		lbVideo.play().catch(() => {});
+		(lightbox.querySelector<HTMLButtonElement>("[data-lb-close]") ?? lbVideo).focus();
+	};
+
+	const closeLightbox = () => {
+		if (!lightbox || !lbVideo) return;
+		lightbox.dataset.open = "false";
+		lightbox.setAttribute("aria-hidden", "true");
+		lightbox.classList.remove("pointer-events-auto", "opacity-100");
+		lightbox.classList.add("pointer-events-none", "opacity-0");
+		lbVideo.pause();
+		lbVideo.removeAttribute("src");
+		lbVideo.load();
+		document.documentElement.style.overflow = "";
+		if (!reducedMotion) {
+			visibleLoops.forEach((video) => video.play().catch(() => {}));
+		}
+		lastFocused?.focus();
+		lastFocused = null;
+	};
+
+	document.querySelectorAll<HTMLButtonElement>("[data-loop-open]").forEach((button) => {
+		button.addEventListener("click", () => {
+			openLightbox(button.dataset.src ?? "", button.dataset.label ?? "", button.dataset.duration ?? "");
+		});
+	});
+
+	lightbox?.querySelectorAll<HTMLButtonElement>("[data-lb-close]").forEach((button) => {
+		button.addEventListener("click", closeLightbox);
+	});
+
+	document.addEventListener("keydown", (event) => {
+		if (event.key === "Escape" && lightboxIsOpen()) {
+			closeLightbox();
+		}
+	});
+</script>
